@@ -16,6 +16,8 @@
 		322D57F71F06481A001A5615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D57F51F06481A001A5615 /* LaunchScreen.storyboard */; };
 		322D58071F065272001A5615 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58061F065272001A5615 /* GDataXMLNode.m */; };
 		322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58091F09DBDB001A5615 /* InfraredData.m */; };
+		322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D580C1F09E1EE001A5615 /* TVProgramData.m */; };
+		322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58121F09E38E001A5615 /* CommonHeadFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		322D58061F065272001A5615 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		322D58081F09DBDB001A5615 /* InfraredData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfraredData.h; sourceTree = "<group>"; };
 		322D58091F09DBDB001A5615 /* InfraredData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfraredData.m; sourceTree = "<group>"; };
+		322D580B1F09E1EE001A5615 /* TVProgramData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVProgramData.h; sourceTree = "<group>"; };
+		322D580C1F09E1EE001A5615 /* TVProgramData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramData.m; sourceTree = "<group>"; };
+		322D58111F09E38E001A5615 /* CommonHeadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeadFile.h; sourceTree = "<group>"; };
+		322D58121F09E38E001A5615 /* CommonHeadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeadFile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,10 @@
 				322D58041F065272001A5615 /* GDataXML */,
 				322D58081F09DBDB001A5615 /* InfraredData.h */,
 				322D58091F09DBDB001A5615 /* InfraredData.m */,
+				322D580B1F09E1EE001A5615 /* TVProgramData.h */,
+				322D580C1F09E1EE001A5615 /* TVProgramData.m */,
+				322D58111F09E38E001A5615 /* CommonHeadFile.h */,
+				322D58121F09E38E001A5615 /* CommonHeadFile.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -186,6 +196,8 @@
 				322D57E61F06481A001A5615 /* main.m in Sources */,
 				322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */,
 				322D57F21F06481A001A5615 /* RemoteControl.xcdatamodeld in Sources */,
+				322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */,
+				322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
