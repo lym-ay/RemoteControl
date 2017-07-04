@@ -18,6 +18,16 @@
 		322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58091F09DBDB001A5615 /* InfraredData.m */; };
 		322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D580C1F09E1EE001A5615 /* TVProgramData.m */; };
 		322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58121F09E38E001A5615 /* CommonHeadFile.m */; };
+		322D581A1F09ECCA001A5615 /* key.xml in Resources */ = {isa = PBXBuildFile; fileRef = 322D58191F09ECCA001A5615 /* key.xml */; };
+		322D581C1F0A0B5C001A5615 /* plusData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 322D581B1F0A0B5C001A5615 /* plusData.xml */; };
+		32F6EB981F0A377200906BDD /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8D1F0A377100906BDD /* FMDatabase.m */; };
+		32F6EB991F0A377200906BDD /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8F1F0A377100906BDD /* FMDatabaseAdditions.m */; };
+		32F6EB9A1F0A377200906BDD /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB911F0A377200906BDD /* FMDatabasePool.m */; };
+		32F6EB9B1F0A377200906BDD /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB931F0A377200906BDD /* FMDatabaseQueue.m */; };
+		32F6EB9C1F0A377200906BDD /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB961F0A377200906BDD /* FMResultSet.m */; };
+		32F6EB9D1F0A377200906BDD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F6EB971F0A377200906BDD /* Info.plist */; };
+		32F6EBA01F0A378A00906BDD /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F6EB9F1F0A378A00906BDD /* libsqlite3.0.tbd */; };
+		32F6EBA31F0A384200906BDD /* FMDBHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EBA21F0A384200906BDD /* FMDBHelp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +50,23 @@
 		322D580C1F09E1EE001A5615 /* TVProgramData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramData.m; sourceTree = "<group>"; };
 		322D58111F09E38E001A5615 /* CommonHeadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeadFile.h; sourceTree = "<group>"; };
 		322D58121F09E38E001A5615 /* CommonHeadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeadFile.m; sourceTree = "<group>"; };
+		322D58191F09ECCA001A5615 /* key.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = key.xml; sourceTree = "<group>"; };
+		322D581B1F0A0B5C001A5615 /* plusData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plusData.xml; sourceTree = "<group>"; };
+		32F6EB8C1F0A377100906BDD /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		32F6EB8D1F0A377100906BDD /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		32F6EB8E1F0A377100906BDD /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		32F6EB8F1F0A377100906BDD /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		32F6EB901F0A377100906BDD /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		32F6EB911F0A377200906BDD /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		32F6EB921F0A377200906BDD /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		32F6EB931F0A377200906BDD /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		32F6EB941F0A377200906BDD /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		32F6EB951F0A377200906BDD /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		32F6EB961F0A377200906BDD /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		32F6EB971F0A377200906BDD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32F6EB9F1F0A378A00906BDD /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		32F6EBA11F0A384200906BDD /* FMDBHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBHelp.h; sourceTree = "<group>"; };
+		32F6EBA21F0A384200906BDD /* FMDBHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBHelp.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F6EBA01F0A378A00906BDD /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +87,7 @@
 				322D58031F065272001A5615 /* Helper */,
 				322D57E31F06481A001A5615 /* RemoteControl */,
 				322D57E21F06481A001A5615 /* Products */,
+				32F6EB9E1F0A378A00906BDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +127,9 @@
 		322D58031F065272001A5615 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				32F6EB8B1F0A377100906BDD /* fmdb */,
+				322D581B1F0A0B5C001A5615 /* plusData.xml */,
+				322D58191F09ECCA001A5615 /* key.xml */,
 				322D58041F065272001A5615 /* GDataXML */,
 				322D58081F09DBDB001A5615 /* InfraredData.h */,
 				322D58091F09DBDB001A5615 /* InfraredData.m */,
@@ -105,6 +137,8 @@
 				322D580C1F09E1EE001A5615 /* TVProgramData.m */,
 				322D58111F09E38E001A5615 /* CommonHeadFile.h */,
 				322D58121F09E38E001A5615 /* CommonHeadFile.m */,
+				32F6EBA11F0A384200906BDD /* FMDBHelp.h */,
+				32F6EBA21F0A384200906BDD /* FMDBHelp.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -116,6 +150,33 @@
 				322D58061F065272001A5615 /* GDataXMLNode.m */,
 			);
 			path = GDataXML;
+			sourceTree = "<group>";
+		};
+		32F6EB8B1F0A377100906BDD /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				32F6EB8C1F0A377100906BDD /* FMDatabase.h */,
+				32F6EB8D1F0A377100906BDD /* FMDatabase.m */,
+				32F6EB8E1F0A377100906BDD /* FMDatabaseAdditions.h */,
+				32F6EB8F1F0A377100906BDD /* FMDatabaseAdditions.m */,
+				32F6EB901F0A377100906BDD /* FMDatabasePool.h */,
+				32F6EB911F0A377200906BDD /* FMDatabasePool.m */,
+				32F6EB921F0A377200906BDD /* FMDatabaseQueue.h */,
+				32F6EB931F0A377200906BDD /* FMDatabaseQueue.m */,
+				32F6EB941F0A377200906BDD /* FMDB.h */,
+				32F6EB951F0A377200906BDD /* FMResultSet.h */,
+				32F6EB961F0A377200906BDD /* FMResultSet.m */,
+				32F6EB971F0A377200906BDD /* Info.plist */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		32F6EB9E1F0A378A00906BDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32F6EB9F1F0A378A00906BDD /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +238,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322D581C1F0A0B5C001A5615 /* plusData.xml in Resources */,
 				322D57F71F06481A001A5615 /* LaunchScreen.storyboard in Resources */,
+				32F6EB9D1F0A377200906BDD /* Info.plist in Resources */,
 				322D57F41F06481A001A5615 /* Assets.xcassets in Resources */,
 				322D57EF1F06481A001A5615 /* Main.storyboard in Resources */,
+				322D581A1F09ECCA001A5615 /* key.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,11 +255,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				322D57EC1F06481A001A5615 /* ViewController.m in Sources */,
+				32F6EB9A1F0A377200906BDD /* FMDatabasePool.m in Sources */,
+				32F6EB9C1F0A377200906BDD /* FMResultSet.m in Sources */,
 				322D57E91F06481A001A5615 /* AppDelegate.m in Sources */,
 				322D58071F065272001A5615 /* GDataXMLNode.m in Sources */,
+				32F6EB9B1F0A377200906BDD /* FMDatabaseQueue.m in Sources */,
+				32F6EBA31F0A384200906BDD /* FMDBHelp.m in Sources */,
+				32F6EB981F0A377200906BDD /* FMDatabase.m in Sources */,
 				322D57E61F06481A001A5615 /* main.m in Sources */,
 				322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */,
 				322D57F21F06481A001A5615 /* RemoteControl.xcdatamodeld in Sources */,
+				32F6EB991F0A377200906BDD /* FMDatabaseAdditions.m in Sources */,
 				322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */,
 				322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */,
 			);
@@ -360,6 +430,7 @@
 				322D57FD1F06481A001A5615 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
