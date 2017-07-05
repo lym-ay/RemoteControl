@@ -20,6 +20,9 @@
 		322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58121F09E38E001A5615 /* CommonHeadFile.m */; };
 		322D581A1F09ECCA001A5615 /* key.xml in Resources */ = {isa = PBXBuildFile; fileRef = 322D58191F09ECCA001A5615 /* key.xml */; };
 		322D581C1F0A0B5C001A5615 /* plusData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 322D581B1F0A0B5C001A5615 /* plusData.xml */; };
+		32C998971F0CBB92005E6946 /* OperatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C998961F0CBB92005E6946 /* OperatorVC.m */; };
+		32C998991F0CC1B7005E6946 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C998981F0CC1B7005E6946 /* CoreLocation.framework */; };
+		32C9989C1F0CC7ED005E6946 /* OperatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C9989B1F0CC7ED005E6946 /* OperatorView.m */; };
 		32F6EB981F0A377200906BDD /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8D1F0A377100906BDD /* FMDatabase.m */; };
 		32F6EB991F0A377200906BDD /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8F1F0A377100906BDD /* FMDatabaseAdditions.m */; };
 		32F6EB9A1F0A377200906BDD /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB911F0A377200906BDD /* FMDatabasePool.m */; };
@@ -52,6 +55,12 @@
 		322D58121F09E38E001A5615 /* CommonHeadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeadFile.m; sourceTree = "<group>"; };
 		322D58191F09ECCA001A5615 /* key.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = key.xml; sourceTree = "<group>"; };
 		322D581B1F0A0B5C001A5615 /* plusData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = plusData.xml; sourceTree = "<group>"; };
+		32C998941F0B96EC005E6946 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		32C998951F0CBB92005E6946 /* OperatorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatorVC.h; sourceTree = "<group>"; };
+		32C998961F0CBB92005E6946 /* OperatorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperatorVC.m; sourceTree = "<group>"; };
+		32C998981F0CC1B7005E6946 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		32C9989A1F0CC7ED005E6946 /* OperatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperatorView.h; path = ../OperatorView.h; sourceTree = "<group>"; };
+		32C9989B1F0CC7ED005E6946 /* OperatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperatorView.m; path = ../OperatorView.m; sourceTree = "<group>"; };
 		32F6EB8C1F0A377100906BDD /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		32F6EB8D1F0A377100906BDD /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		32F6EB8E1F0A377100906BDD /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -74,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C998991F0CC1B7005E6946 /* CoreLocation.framework in Frameworks */,
 				32F6EBA01F0A378A00906BDD /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +94,7 @@
 		322D57D81F06481A001A5615 = {
 			isa = PBXGroup;
 			children = (
+				32C998941F0B96EC005E6946 /* Macro.h */,
 				322D58031F065272001A5615 /* Helper */,
 				322D57E31F06481A001A5615 /* RemoteControl */,
 				322D57E21F06481A001A5615 /* Products */,
@@ -112,6 +123,10 @@
 				322D57F81F06481A001A5615 /* Info.plist */,
 				322D57F01F06481A001A5615 /* RemoteControl.xcdatamodeld */,
 				322D57E41F06481A001A5615 /* Supporting Files */,
+				32C998951F0CBB92005E6946 /* OperatorVC.h */,
+				32C998961F0CBB92005E6946 /* OperatorVC.m */,
+				32C9989A1F0CC7ED005E6946 /* OperatorView.h */,
+				32C9989B1F0CC7ED005E6946 /* OperatorView.m */,
 			);
 			path = RemoteControl;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		32F6EB9E1F0A378A00906BDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32C998981F0CC1B7005E6946 /* CoreLocation.framework */,
 				32F6EB9F1F0A378A00906BDD /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
@@ -254,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C9989C1F0CC7ED005E6946 /* OperatorView.m in Sources */,
 				322D57EC1F06481A001A5615 /* ViewController.m in Sources */,
 				32F6EB9A1F0A377200906BDD /* FMDatabasePool.m in Sources */,
 				32F6EB9C1F0A377200906BDD /* FMResultSet.m in Sources */,
@@ -266,6 +283,7 @@
 				322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */,
 				322D57F21F06481A001A5615 /* RemoteControl.xcdatamodeld in Sources */,
 				32F6EB991F0A377200906BDD /* FMDatabaseAdditions.m in Sources */,
+				32C998971F0CBB92005E6946 /* OperatorVC.m in Sources */,
 				322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */,
 				322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */,
 			);

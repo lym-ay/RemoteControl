@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "InfraredData.h"
+#import "OperatorView.h"
+#import "Macro.h"
 
 
 @interface ViewController ()
@@ -20,7 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self initData];
+    //[self initData];
+    
+    OperatorView *opView = [[OperatorView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, Kheight)];
+    opView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:opView];
  
 }
 
