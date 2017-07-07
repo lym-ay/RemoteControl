@@ -1,68 +1,35 @@
 //
-//  ViewController.m
+//  NavigationView.m
 //  RemoteControl
 //
-//  Created by olami on 2017/6/30.
+//  Created by olami on 2017/7/7.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "InfraredData.h"
-#import "OperatorView.h"
-#import "Macro.h"
+#import "NavigationView.h"
 #import "HotCollectionViewCell.h"
 #import "RCHeaderChooseViewScrollView.h"
-#import "SearchView.h"
+#import "Macro.h"
+
+@interface NavigationView()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property (nonatomic ,retain) UICollectionView *collectionView;
+@property (nonatomic ,retain) NSMutableArray *tagArray;
+@property (nonatomic ,retain) RCHeaderChooseViewScrollView  *headerView;
+@end
+
 
 static NSString *reuseID = @"itemCell";
 static NSString *sectionHeaderID = @"sectionHeader";
 
-@interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>{
-    SearchView *searchView;
-}
-@property (nonatomic ,retain) UICollectionView *collectionView;
+@implementation NavigationView
 
-@property (nonatomic ,retain) NSMutableArray *tagArray;
-
-@property (nonatomic ,retain) RCHeaderChooseViewScrollView  *headerView;
-
-@end
-
-@implementation ViewController
- 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    //[self initData];
-    
-//    OperatorView *opView = [[OperatorView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, Kheight)];
-//    opView.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:opView];
-    
-    [self createNav];
-    [self createCollectionView];
-    
-    searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, Kheight)];
-    searchView.hidden = YES;
-    [self.view addSubview:searchView];
- 
-}
-- (IBAction)buttonAction:(id)sender {
-    searchView.hidden = NO;
-}
-
-- (void)initData {
-    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
-    if (!pulseDBName) {
-        [[InfraredData sharedInfraredData] parserXML];
-        NSString *dbName = [InfraredData sharedInfraredData].dbName;
-        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
-    }else{
-        [InfraredData sharedInfraredData].dbName = pulseDBName;
+-(id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self createNav];
+        [self createCollectionView];
     }
     
-
+    return self;
 }
 
 -(void)createNav{
@@ -84,8 +51,8 @@ static NSString *sectionHeaderID = @"sectionHeader";
     self.tagArray =[NSMutableArray arrayWithArray:array];
     
     self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 88, Kwidth, 32)];
-
-    [self.view addSubview:self.headerView];
+    
+    [self addSubview:self.headerView];
     
     [self.headerView setUpTitleArray:array titleColor:nil titleSelectedColor:nil titleFontSize:0];
     __weak typeof(self) weakSelf = self;
@@ -99,7 +66,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
 
 -(void)createCollectionView{
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = self.view.bounds.size;
+    layout.itemSize = self.bounds.size;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -109,7 +76,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
     self.collectionView.dataSource = self;
     self.collectionView.bounces = YES;
     self.collectionView.pagingEnabled = YES;
-    [self.view addSubview:self.collectionView];
+    [self addSubview:self.collectionView];
     [self.collectionView registerClass:[HotCollectionViewCell class] forCellWithReuseIdentifier:reuseID];
 }
 
@@ -135,13 +102,5 @@ static NSString *sectionHeaderID = @"sectionHeader";
 }
 
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
- 
 
 @end

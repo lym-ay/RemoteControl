@@ -33,6 +33,7 @@
 		32C998EA1F0F78E3005E6946 /* SearchHistoryRecordfooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C998E61F0F78E3005E6946 /* SearchHistoryRecordfooter.m */; };
 		32C998EB1F0F78E3005E6946 /* SearchHistoryRecordfooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C998E71F0F78E3005E6946 /* SearchHistoryRecordfooter.xib */; };
 		32C998EC1F0F78E3005E6946 /* SearchRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C998E91F0F78E3005E6946 /* SearchRecordTableViewCell.m */; };
+		32C998EF1F0F8875005E6946 /* NavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C998EE1F0F8875005E6946 /* NavigationView.m */; };
 		32F6EB981F0A377200906BDD /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8D1F0A377100906BDD /* FMDatabase.m */; };
 		32F6EB991F0A377200906BDD /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB8F1F0A377100906BDD /* FMDatabaseAdditions.m */; };
 		32F6EB9A1F0A377200906BDD /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6EB911F0A377200906BDD /* FMDatabasePool.m */; };
@@ -89,6 +90,8 @@
 		32C998E71F0F78E3005E6946 /* SearchHistoryRecordfooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHistoryRecordfooter.xib; sourceTree = "<group>"; };
 		32C998E81F0F78E3005E6946 /* SearchRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRecordTableViewCell.h; sourceTree = "<group>"; };
 		32C998E91F0F78E3005E6946 /* SearchRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRecordTableViewCell.m; sourceTree = "<group>"; };
+		32C998ED1F0F8875005E6946 /* NavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationView.h; sourceTree = "<group>"; };
+		32C998EE1F0F8875005E6946 /* NavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationView.m; sourceTree = "<group>"; };
 		32F6EB8C1F0A377100906BDD /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		32F6EB8D1F0A377100906BDD /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		32F6EB8E1F0A377100906BDD /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				32C998A11F0CE91B005E6946 /* MainCollectionViewCell.m */,
 				32C998A31F0CE9A0005E6946 /* HotCollectionViewCell.h */,
 				32C998A41F0CE9A0005E6946 /* HotCollectionViewCell.m */,
+				32C998ED1F0F8875005E6946 /* NavigationView.h */,
+				32C998EE1F0F8875005E6946 /* NavigationView.m */,
 			);
 			path = RemoteControl;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				322D57E91F06481A001A5615 /* AppDelegate.m in Sources */,
 				32C998EC1F0F78E3005E6946 /* SearchRecordTableViewCell.m in Sources */,
 				32C998EA1F0F78E3005E6946 /* SearchHistoryRecordfooter.m in Sources */,
+				32C998EF1F0F8875005E6946 /* NavigationView.m in Sources */,
 				322D58071F065272001A5615 /* GDataXMLNode.m in Sources */,
 				32F6EB9B1F0A377200906BDD /* FMDatabaseQueue.m in Sources */,
 				32F6EBA31F0A384200906BDD /* FMDBHelp.m in Sources */,
