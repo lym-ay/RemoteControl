@@ -11,6 +11,7 @@
 
 
 #define COLOR(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+#define RandomColor [UIColor colorWithRed:arc4random_uniform(255) / 255.0 green:arc4random_uniform(255) / 255.0 blue:arc4random_uniform(255) / 255.0 alpha:1.0];
 #define Kwidth [UIScreen mainScreen].bounds.size.width
 #define Kheight [UIScreen mainScreen].bounds.size.height
 #define nKwidth [UIScreen mainScreen].bounds.size.width/375
