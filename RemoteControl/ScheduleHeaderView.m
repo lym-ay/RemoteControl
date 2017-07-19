@@ -1,14 +1,14 @@
 //
-//  HotCollectionViewCell.m
+//  ScheduleHeaderView.m
 //  RemoteControl
 //
-//  Created by olami on 2017/7/5.
+//  Created by olami on 2017/7/10.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
-#import "HotCollectionViewCell.h"
+#import "ScheduleHeaderView.h"
 
-@implementation HotCollectionViewCell
+@implementation ScheduleHeaderView
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -7,7 +7,6 @@
 //
 
 #import "InfraredData.h"
-#import "GDataXMLNode.h"
 #import "FMDBHelp.h"
 
 #define TABLENAME @"pulseTable"
@@ -40,96 +39,134 @@
 - (void)createTable {
     [[FMDBHelp sharedFMDBHelp] createDBWithName:@"pulseData"];
     NSString *createTableSql =
-    [NSString stringWithFormat:@"create table if not exists %@('pulseID' text primary key not null,'englishName' text,'chineseName' text,'productName' text,'pulseData' text)",TABLENAME];
+    [NSString stringWithFormat:@"create table if not exists %@('pulseID' text primary key not null,'chineseName' text,'userCode' text,'deviceName' text,'pulseData' text,'datacodeValue' text)",TABLENAME];
     
     BOOL isCreate =  [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:createTableSql];
     if (isCreate) {
-        NSLog(@"create pluseTable done!");
+        NSLog(@"create pulseTable done!");
     }else{
-        NSLog(@"create pluseTable failure!");
+        NSLog(@"create pulseTable failure!");
     }
 }
 
-- (void)parserXML {
+- (void)parserJSON {
     [self createTable];
-    NSString *fileXML = [[NSBundle mainBundle] pathForResource:@"key" ofType:@"xml"];
-    NSData *data = [NSData dataWithContentsOfFile:fileXML];
-    [self XMLGDataXMLNodeWithKeyData:data];
-    
-    NSString *fileXML1 = [[NSBundle mainBundle] pathForResource:@"plusData" ofType:@"xml"];
-    NSData *data1 = [NSData dataWithContentsOfFile:fileXML1];
-    [self XMLGDataXMLNodeWithPulseData:data1];
-
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    [self generateData:data];
 }
 
 
-//解析遥控器按键对应的信息
--(void)XMLGDataXMLNodeWithKeyData:(NSData *)data{
-    //1.加载XML数据
-    GDataXMLDocument *XMLDocument = [[GDataXMLDocument alloc] initWithData:data error:nil];
-    //2.拿到XML文件中根元素下需要解析的子元素数组
-    NSArray *elements = [XMLDocument.rootElement elementsForName:@"key"];
-    //3.对子元素数组中所有数据进行解析
-    [elements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        GDataXMLElement *XMLElement = (GDataXMLElement *)obj;
+
+-(void)generateData:(NSData*)data {
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                       options:NSJSONReadingMutableContainers
+                                                         error:&err];
+    if (err) {
+        NSLog(@"error is %@",err.localizedDescription);
+        return;
+    }
+    
+    NSString *userCode = [dic objectForKey:@"usercode"];
+    NSString *deviecName = [dic objectForKey:@"devicename"];
+    NSArray *dataCodeArry = [dic objectForKey:@"datacode"];
+    for (int i=0; i<dataCodeArry.count; i++) {
+        NSDictionary *dicData = dataCodeArry[i];
+        NSString *chineseName = [dicData objectForKey:@"chinesename"];
+        NSString *idNum = [dicData objectForKey:@"id"];
+        NSString *dataCodeValue = [dicData objectForKey:@"datacodevalue"];
+        NSString *pulseData = [dicData objectForKey:@"pulsedata"];
         
-        NSArray *children = XMLElement.children;
-        //id
-        GDataXMLNode *node0 = children[0];
-        
-        //english name
-        GDataXMLNode *node1 = children[1];
- 
-        //chinese name
-        GDataXMLNode *node2 = children[2];
- 
-        
-        NSString *insertSql = [NSString stringWithFormat:@"insert into '%@'(pulseID,englishName,chineseName) values ('%@','%@','%@')",TABLENAME,node0.stringValue,node1.stringValue,node2.stringValue];
+        NSString *insertSql = [NSString stringWithFormat:@"insert into '%@'(pulseID,chineseName,userCode,deviceName,pulseData,datacodeValue) values ('%@','%@','%@','%@','%@','%@')",TABLENAME,idNum,chineseName,userCode,deviecName,pulseData,dataCodeValue];
         [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:insertSql];
-        
-        
-    }];
+
+    }
+    
     
 }
 
+//- (void)parserXML {
+//    [self createTable];
+//    NSString *fileXML = [[NSBundle mainBundle] pathForResource:@"key" ofType:@"xml"];
+//    NSData *data = [NSData dataWithContentsOfFile:fileXML];
+//    [self XMLGDataXMLNodeWithKeyData:data];
+//    
+//    NSString *fileXML1 = [[NSBundle mainBundle] pathForResource:@"plusData" ofType:@"xml"];
+//    NSData *data1 = [NSData dataWithContentsOfFile:fileXML1];
+//    [self XMLGDataXMLNodeWithPulseData:data1];
+//
+//}
 
-//解析红外线码
--(void)XMLGDataXMLNodeWithPulseData:(NSData *)data{
-    //1.加载XML数据
-    GDataXMLDocument *XMLDocument = [[GDataXMLDocument alloc] initWithData:data error:nil];
-    //2.拿到XML文件中根元素下需要解析的子元素数组
-    NSArray *elements = [XMLDocument.rootElement elementsForName:@"remote_controller"];
-    //3.对子元素数组中所有数据进行解析
-    [elements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        GDataXMLElement *XMLElement = (GDataXMLElement *)obj;
-        //remote_controller的孩子
-        NSArray *children = XMLElement.children;
-        
-        //keys的信息  //keys里面63个名字为key的孩子 key有三个孩子:id,pulse,exts
-        GDataXMLNode *nodeKeys = children[4];
-        NSArray *keysChildren = nodeKeys.children;
-        
-        for (int i=0; i<keysChildren.count; i++) {
-           
-            GDataXMLNode *nodeKey = keysChildren[i];
-            NSArray *keyChildren = nodeKey.children;
-            
-            //id
-            GDataXMLNode *node0 = keyChildren[0];
-            
-            
-            //pulse
-            GDataXMLNode *node1 = keyChildren[1];
-            
-            NSString *updateSql = [NSString stringWithFormat:@"update '%@' set pulseData = '%@' where pulseID = '%@' ",TABLENAME,node1.stringValue,node0.stringValue];
-            [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:updateSql];    
 
-        }
-        
-        
-    }];
-    
-}
+
+////解析遥控器按键对应的信息
+//-(void)XMLGDataXMLNodeWithKeyData:(NSData *)data{
+//    //1.加载XML数据
+//    GDataXMLDocument *XMLDocument = [[GDataXMLDocument alloc] initWithData:data error:nil];
+//    //2.拿到XML文件中根元素下需要解析的子元素数组
+//    NSArray *elements = [XMLDocument.rootElement elementsForName:@"key"];
+//    //3.对子元素数组中所有数据进行解析
+//    [elements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        GDataXMLElement *XMLElement = (GDataXMLElement *)obj;
+//        
+//        NSArray *children = XMLElement.children;
+//        //id
+//        GDataXMLNode *node0 = children[0];
+//        
+//        //english name
+//        GDataXMLNode *node1 = children[1];
+// 
+//        //chinese name
+//        GDataXMLNode *node2 = children[2];
+// 
+//        
+//        NSString *insertSql = [NSString stringWithFormat:@"insert into '%@'(pulseID,englishName,chineseName) values ('%@','%@','%@')",TABLENAME,node0.stringValue,node1.stringValue,node2.stringValue];
+//        [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:insertSql];
+//        
+//        
+//    }];
+//    
+//}
+//
+//
+////解析红外线码
+//-(void)XMLGDataXMLNodeWithPulseData:(NSData *)data{
+//    //1.加载XML数据
+//    GDataXMLDocument *XMLDocument = [[GDataXMLDocument alloc] initWithData:data error:nil];
+//    //2.拿到XML文件中根元素下需要解析的子元素数组
+//    NSArray *elements = [XMLDocument.rootElement elementsForName:@"remote_controller"];
+//    //3.对子元素数组中所有数据进行解析
+//    [elements enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        GDataXMLElement *XMLElement = (GDataXMLElement *)obj;
+//        //remote_controller的孩子
+//        NSArray *children = XMLElement.children;
+//        
+//        //keys的信息  //keys里面63个名字为key的孩子 key有三个孩子:id,pulse,exts
+//        GDataXMLNode *nodeKeys = children[4];
+//        NSArray *keysChildren = nodeKeys.children;
+//        
+//        for (int i=0; i<keysChildren.count; i++) {
+//           
+//            GDataXMLNode *nodeKey = keysChildren[i];
+//            NSArray *keyChildren = nodeKey.children;
+//            
+//            //id
+//            GDataXMLNode *node0 = keyChildren[0];
+//            
+//            
+//            //pulse
+//            GDataXMLNode *node1 = keyChildren[1];
+//            
+//            NSString *updateSql = [NSString stringWithFormat:@"update '%@' set pulseData = '%@' where pulseID = '%@' ",TABLENAME,node1.stringValue,node0.stringValue];
+//            [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:updateSql];    
+//
+//        }
+//        
+//        
+//    }];
+//    
+//}
 
 
 - (NSString *)searchPulseData:(NSString*)pulseID {

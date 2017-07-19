@@ -1,27 +1,30 @@
 //
-//  NavigationView.m
+//  ProgramSearchView.m
 //  RemoteControl
 //
-//  Created by olami on 2017/7/7.
+//  Created by olami on 2017/7/10.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
-#import "NavigationView.h"
-
+#import "ProgramSearchView.h"
 #import "RCHeaderChooseViewScrollView.h"
+#import "ProgramCollectionViewCell.h"
+#import "ScheduleCollectionViewCell.h"
 #import "Macro.h"
 
-@interface NavigationView()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@interface ProgramSearchView()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,retain) UICollectionView *collectionView;
 @property (nonatomic ,retain) NSMutableArray *tagArray;
 @property (nonatomic ,retain) RCHeaderChooseViewScrollView  *headerView;
 @end
 
 
-static NSString *reuseID = @"itemCell";
+static NSString *programID = @"ProgramItemCell";
+static NSString *scheduleID = @"ScheduleItemCell";
 static NSString *sectionHeaderID = @"sectionHeader";
 
-@implementation NavigationView
+@implementation ProgramSearchView
 
 -(id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -34,20 +37,9 @@ static NSString *sectionHeaderID = @"sectionHeader";
 
 -(void)createNav{
     NSArray *array=@[
-                     @"热门",
-                     @"本地",
-                     @"央视",
-                     @"卫视",
-                     @"影视",
-                     @"新闻",
-                     @"体育",
-                     @"综艺",
-                     @"生活",
-                     @"科教",
-                     @"音乐",
-                     @"少儿",
-                     @"其它"
-                     ];
+                     @"正在播放",
+                     @"播出时间"
+                    ];
     self.tagArray =[NSMutableArray arrayWithArray:array];
     
     self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 88, Kwidth, 32)];
@@ -77,7 +69,8 @@ static NSString *sectionHeaderID = @"sectionHeader";
     self.collectionView.bounces = YES;
     self.collectionView.pagingEnabled = YES;
     [self addSubview:self.collectionView];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseID];
+    [self.collectionView registerClass:[ProgramCollectionViewCell class] forCellWithReuseIdentifier:programID];
+    [self.collectionView registerClass:[ScheduleCollectionViewCell class] forCellWithReuseIdentifier:scheduleID];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -86,9 +79,26 @@ static NSString *sectionHeaderID = @"sectionHeader";
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
-    cell.backgroundColor = RandomColor;
-    return cell;
+    switch (indexPath.row) {
+        case 0: {
+            ProgramCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:programID forIndexPath:indexPath];
+            cell.backgroundColor = [UIColor blueColor];
+            return cell;
+        }
+            
+            break;
+        case 1: {
+            ScheduleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:scheduleID forIndexPath:indexPath];
+            cell.backgroundColor = [UIColor redColor];
+            return cell;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return nil;
+    
 }
 
 
@@ -100,7 +110,4 @@ static NSString *sectionHeaderID = @"sectionHeader";
     [self.headerView scollToCurrentButtonWithIndex:index];
     
 }
-
-
-
 @end

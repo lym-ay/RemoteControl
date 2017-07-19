@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "OperatorVC.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NSThread sleepForTimeInterval:1.0];//设置启动页面时间
+    
+    NSString *key = (NSString *)kCFBundleVersionKey;
+    NSString *version = [NSBundle mainBundle].infoDictionary[key];
+    NSString *saveVersion = [[NSUserDefaults  standardUserDefaults] objectForKey:key];
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if(![version  isEqualToString:saveVersion]) {//如果相同，不是第一次启动
+        UIViewController* mainVC =[mainStoryBoard instantiateViewControllerWithIdentifier:@"mainSID"];
+        self.window.rootViewController = mainVC;
+    }else{
+        //版本号不一样：第一次使用新版本
+        //将新版本号写入沙盒
+        [[NSUserDefaults  standardUserDefaults] setObject:version forKey:key];
+        [[NSUserDefaults  standardUserDefaults] synchronize];
+        NSLog(@"首次登陆！");
+        UIViewController* mainVC =[mainStoryBoard instantiateViewControllerWithIdentifier:@"operatorSID"];
+        self.window.rootViewController = mainVC;
+    }
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
