@@ -12,6 +12,7 @@
 #import "InfraredData.h"
 #import "OperatorViewCell.h"
 #import "MBProgressHUD.h"
+#import "UserManager.h"
 #import <CoreLocation/CoreLocation.h>
 
 static NSString   *OperationCell              =  @"OperationViewTableViewCellId";
@@ -81,6 +82,7 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
     _companyNameArry[0] = @"东方有线";
     _companyNameArry[1] = @"百视通";
     _companyNameArry[2] = @"海信";
+    [UserManager shareInstance].companyNameArry = [[NSArray alloc] initWithArray:_companyNameArry];
     
     
     _cellArry = [[NSMutableArray alloc] init];
@@ -142,8 +144,7 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
             CLPlacemark * placeMark = placemarks[0];
             _cityName = placeMark.locality;
             NSLog(@"city is %@",_cityName);
-            NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-            [userDefaultes setObject:_cityName forKey:@"cityName"];
+            [UserManager shareInstance].cityName = _cityName;
             NSString *str = [NSString stringWithFormat:@"当前城市:%@",_cityName];
             _labelCityName.text = str;
             
@@ -192,8 +193,7 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
     OperatorViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell.button setImage:[UIImage imageNamed:@"float"] forState:UIControlStateNormal];
     
-    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-    [userDefaultes setObject:cell.nameLabel.text forKey:@"companyName"];//保存正在使用的运营商的名称
+    [UserManager shareInstance].companyName = cell.nameLabel.text;
     
 }
 

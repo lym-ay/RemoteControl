@@ -102,8 +102,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
 }
 
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     CGFloat offsetx =scrollView.contentOffset.x;
     NSInteger index = offsetx/Kwidth;

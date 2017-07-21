@@ -25,7 +25,7 @@
     NSString *version = [NSBundle mainBundle].infoDictionary[key];
     NSString *saveVersion = [[NSUserDefaults  standardUserDefaults] objectForKey:key];
     UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    if(![version  isEqualToString:saveVersion]) {//如果相同，不是第一次启动
+    if([version  isEqualToString:saveVersion]) {//如果相同，不是第一次启动
         UIViewController* mainVC =[mainStoryBoard instantiateViewControllerWithIdentifier:@"mainSID"];
         self.window.rootViewController = mainVC;
     }else{

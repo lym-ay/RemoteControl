@@ -19,6 +19,7 @@
 #define SCREEN_FRAME ([UIScreen mainScreen].bounds)
 
 #define FONTFAMILY            @"PingFang-SC-Regular"
+#define PINTFANGTHIN           @"PingFang-SC-Thin"
 
 #define NSSLog(FORMAT, ...) {\
 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
