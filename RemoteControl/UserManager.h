@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface UserManager : NSObject
-@property (nonatomic, copy) NSArray  *companyNameArry;//用来保存当前城市的运营商的名称
-@property (nonatomic, copy) NSString *cityName;
-@property (nonatomic, copy) NSString *companyName;//当前选择的运营商的名称
+@property (nonatomic, copy) NSArray         *companyNameArry;//用来保存当前城市的运营商的名称
+@property (nonatomic, copy) NSString        *cityName;
+@property (nonatomic, copy) NSString        *companyName;//当前选择的运营商的名称
+@property (nonatomic, copy) NSDictionary    *programData;//当前频道列表
 +(UserManager *)shareInstance;
 @end

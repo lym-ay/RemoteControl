@@ -13,6 +13,7 @@
 @property (nonatomic,copy) NSString *dbName;
  - (void)parserJSON;
 - (NSString *)searchPulseData:(NSString*)pulseID;
+- (NSDictionary *)searchData:(NSString*)index;
 @end
 
 

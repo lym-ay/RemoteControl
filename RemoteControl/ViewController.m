@@ -16,10 +16,13 @@
 #import "Masonry.h"
 #import "VoiceView.h"
 #import "NumberView.h"
+#import "WaveService.h"
+#import "UserManager.h"
 
 
 
-@interface ViewController ()<UITextFieldDelegate>{
+
+@interface ViewController ()<UITextFieldDelegate,VoiceViewDelegate>{
     SearchView          *searchView;
     NavigationView      *navigationView;
     ProgramSearchView   *programSearchView;
@@ -29,6 +32,9 @@
 @property (nonatomic, strong) SearchTextField *searchField;
 @property (nonatomic, strong) VoiceView       *voiceView;
 @property (nonatomic, strong) NumberView      *numberView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIView *voiceBackView;//用来保存VoiceView界面
+
 
 
 @end
@@ -88,15 +94,18 @@
     }];
  
     
-    //声音界面
-    _voiceView = [[VoiceView alloc] initWithFrame:CGRectMake(0, Kheight, Kwidth, Kheight)];
-    __weak typeof(self) weakSelf = self;
-    _voiceView.block= ^{
-        [UIView animateWithDuration:0.5 animations:^{
-            weakSelf.voiceView.frame = CGRectMake(0, Kheight, Kwidth, Kheight);
-        }];
-    };
-    [self.view addSubview:_voiceView];
+    //录音界面
+    
+    _voiceView = [[VoiceView alloc] initWithFrame:_voiceBackView.frame];
+    _voiceBackView.backgroundColor = COLOR(24, 49, 69, 1);
+    _voiceView.delegate = self;
+//    __weak typeof(self) weakSelf = self;
+//    _voiceView.block= ^{
+//        [UIView animateWithDuration:0.5 animations:^{
+//            weakSelf.voiceView.frame = CGRectMake(0, Kheight, Kwidth, Kheight);
+//        }];
+//    };
+    [_voiceBackView addSubview:_voiceView];
     
     
     //数字键盘界面
@@ -113,20 +122,37 @@
 
 
 - (void)setupData {
+    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
+    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
+    if (!pulseDBName) {
+        [[InfraredData sharedInfraredData] parserJSON];
+        NSString *dbName = [InfraredData sharedInfraredData].dbName;
+        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
+    }else{
+        [InfraredData sharedInfraredData].dbName = pulseDBName;
+    }
+    
+    [self creatProgramData];
+
     
 }
 
 - (IBAction)switchAction:(id)sender {
+    NSString *userCode = @"bf00";
+    NSString *datacodeValue = @"0d";
+    [[WaveService shareInstance] sendSignal:userCode dataCode:datacodeValue];
+}
+- (IBAction)voiceAction:(id)sender {
+    [UIView animateWithDuration:0.1 animations:^{
+        _voiceBackView.frame = CGRectMake(0, 421, Kwidth, _voiceBackView.frame.size.height);
+    }];
+    [_voiceView start];
 }
 
 - (IBAction)volumeAction:(id)sender {
+   
 }
-- (IBAction)speakAction:(id)sender {
-    [UIView animateWithDuration:1 animations:^{
-        _voiceView.frame = CGRectMake(0, 0, Kwidth, Kheight);
-    }];
-
-}
+ 
 - (IBAction)changeChannelAction:(id)sender {
 }
 - (IBAction)moreAction:(id)sender {
@@ -146,6 +172,50 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     NSLog(@"test");
     return NO;
+}
+
+#pragma mark --Voice delegate
+- (void)onUpdateVolume:(float)volume {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.progressView setProgress:(volume/100) animated:YES];
+    });
+}
+
+- (void)onEndOfSpeech {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.1 animations:^{
+            weakSelf.voiceBackView.frame = CGRectMake(0, Kheight, Kwidth, _voiceBackView.frame.size.height);
+        }];
+
+    });
+}
+
+-(void)onBeginningOfSpeech {
+    
+}
+
+-(void)onCancel {
+    
+}
+
+//创建频道列表
+- (void)creatProgramData {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"program" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if (err) {
+        NSLog(@"error is %@",err.localizedDescription);
+        return;
+    }
+    
+    [UserManager shareInstance].programData = [[NSDictionary alloc] initWithDictionary:dic];
+
+
 }
 
 @end

@@ -68,15 +68,15 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
 
 
 - (void)initData {
-//    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-//    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
-//    if (!pulseDBName) {
-//        [[InfraredData sharedInfraredData] parserJSON];
-//        NSString *dbName = [InfraredData sharedInfraredData].dbName;
-//        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
-//    }else{
-//        [InfraredData sharedInfraredData].dbName = pulseDBName;
-//    }
+    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
+    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
+    if (!pulseDBName) {
+        [[InfraredData sharedInfraredData] parserJSON];
+        NSString *dbName = [InfraredData sharedInfraredData].dbName;
+        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
+    }else{
+        [InfraredData sharedInfraredData].dbName = pulseDBName;
+    }
     
     _companyNameArry = [[NSMutableArray alloc] init];
     _companyNameArry[0] = @"东方有线";

@@ -51,7 +51,7 @@
                                                         withIntermediateDirectories:NO
                                                         attributes:nil
                                                         error:nil];
-        NSLog(@"%@",fullPath);
+        //NSLog(@"%@",fullPath);
         return fullPath;
     } else {
         return @"";
@@ -70,10 +70,10 @@
 #pragma mark - 打开或者创建数据库
 - (BOOL)openOrCreateDB {
     if ([self.database open]) {
-        NSLog(@"数据库打开成功");
+        //NSLog(@"数据库打开成功");
         return YES;
     } else {
-        NSLog(@"数据库打开失败");
+        //NSLog(@"数据库打开失败");
         return NO;
     }
 }
@@ -86,10 +86,10 @@
         //进行操作
         BOOL isSuccess = [self.database executeUpdate:sql];
         [self closeDB];
-        NSLog(@"打开数据库成功");
+        //NSLog(@"打开数据库成功");
         return isSuccess;
     } else {
-        NSLog(@"打开数据库失败");
+        //NSLog(@"打开数据库失败");
         return NO;
     }
 }
@@ -98,9 +98,9 @@
 - (void)closeDB {
     BOOL isClose = [self.database close];
     if (isClose) {
-        NSLog(@"关闭数据库成功");
+        //NSLog(@"关闭数据库成功");
     } else {
-        NSLog(@"关闭数据库失败");
+        //NSLog(@"关闭数据库失败");
     }
 }
 

@@ -9,6 +9,8 @@
 #import "NumberView.h"
 #import "Macro.h"
 #import "Masonry.h"
+#import "WaveService.h"
+#import "InfraredData.h"
 
 #define WIDTHPADDING 29
 #define HEIGHTPADDING 25
@@ -115,11 +117,8 @@
         tmpNum =0;
         _numLabel.text = @"";
        
-        
-        //button.layer.backgroundColor = [UIColor clearColor].CGColor;
-
-        
     }else if (button.tag == 111) {//确定按钮
+        [self okButton];
          
     }else if (button.tag == 110){// 0
         if (tmpNum) {
@@ -146,6 +145,52 @@
         
     }
     
+}
+
+
+//当点击确定按钮时发出命令
+-(void)okButton {
+    NSInteger okNum = tmpNum;
+    NSMutableArray *arry = [[NSMutableArray alloc] init];
+    if (_numLabel.text.length != 0) {
+        while (okNum) {
+            int num = okNum%10;
+            [arry addObject:[NSString stringWithFormat:@"%d",num]];
+            okNum = okNum/10;
+        }
+     
+    
+        NSString *str0 = arry[arry.count-1];
+        NSDictionary *dic = [[InfraredData sharedInfraredData] searchData:str0];
+   
+
+        if (dic) {
+            NSString *userCode = [dic objectForKey:@"userCode"];
+            NSString *datacodeValue = [dic objectForKey:@"datacodeValue"];
+            [[WaveService shareInstance] sendSignal:userCode dataCode:datacodeValue];
+            
+        }
+
+        
+        for (int i=arry.count-2; i>=0; i--) {
+            NSString *str = arry[i];
+            //如果数字大于2，则延时1秒钟单独发送各个数字
+            [self performSelector:@selector(sendSignal:) withObject:str afterDelay:1];
+        }
+    }
+ 
+}
+
+
+- (void)sendSignal:(NSString*)str {
+    NSDictionary *dic = [[InfraredData sharedInfraredData] searchData:str];
+    if (dic) {
+        NSString *userCode = [dic objectForKey:@"userCode"];
+        NSString *datacodeValue = [dic objectForKey:@"datacodeValue"];
+        [[WaveService shareInstance] sendSignal:userCode dataCode:datacodeValue];
+        
+    }
+
 }
 
 @end

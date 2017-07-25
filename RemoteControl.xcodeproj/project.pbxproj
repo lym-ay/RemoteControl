@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320957C11F18AFBB00A927C2 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 320957C01F18AFBB00A927C2 /* test.json */; };
+		320BEA7B1F25A0160031EE0D /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 320BEA7A1F25A0160031EE0D /* test.json */; };
+		322387261F25FA7900FBF562 /* program.json in Resources */ = {isa = PBXBuildFile; fileRef = 322387251F25FA7900FBF562 /* program.json */; };
 		322D57E61F06481A001A5615 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57E51F06481A001A5615 /* main.m */; };
 		322D57E91F06481A001A5615 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57E81F06481A001A5615 /* AppDelegate.m */; };
 		322D57EC1F06481A001A5615 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57EB1F06481A001A5615 /* ViewController.m */; };
@@ -18,6 +19,7 @@
 		322D580A1F09DBDB001A5615 /* InfraredData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58091F09DBDB001A5615 /* InfraredData.m */; };
 		322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D580C1F09E1EE001A5615 /* TVProgramData.m */; };
 		322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D58121F09E38E001A5615 /* CommonHeadFile.m */; };
+		32766FA21F21CA2500617377 /* WaveService.m in Sources */ = {isa = PBXBuildFile; fileRef = 32766FA11F21CA2500617377 /* WaveService.m */; };
 		32AFC6F91F1F266A0032C1DB /* operator.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AFC6F61F1F266A0032C1DB /* operator.png */; };
 		32AFC6FA1F1F266A0032C1DB /* operator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AFC6F71F1F266A0032C1DB /* operator@2x.png */; };
 		32AFC6FB1F1F266A0032C1DB /* operator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AFC6F81F1F266A0032C1DB /* operator@3x.png */; };
@@ -103,7 +105,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		320957C01F18AFBB00A927C2 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		320BEA7A1F25A0160031EE0D /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		322387251F25FA7900FBF562 /* program.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = program.json; sourceTree = "<group>"; };
 		322D57E11F06481A001A5615 /* RemoteControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		322D57E51F06481A001A5615 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322D57E71F06481A001A5615 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 		322D580C1F09E1EE001A5615 /* TVProgramData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVProgramData.m; sourceTree = "<group>"; };
 		322D58111F09E38E001A5615 /* CommonHeadFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeadFile.h; sourceTree = "<group>"; };
 		322D58121F09E38E001A5615 /* CommonHeadFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeadFile.m; sourceTree = "<group>"; };
+		32766FA01F21CA2500617377 /* WaveService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveService.h; sourceTree = "<group>"; };
+		32766FA11F21CA2500617377 /* WaveService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveService.m; sourceTree = "<group>"; };
 		32AFC6F61F1F266A0032C1DB /* operator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = operator.png; sourceTree = "<group>"; };
 		32AFC6F71F1F266A0032C1DB /* operator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "operator@2x.png"; sourceTree = "<group>"; };
 		32AFC6F81F1F266A0032C1DB /* operator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "operator@3x.png"; sourceTree = "<group>"; };
@@ -340,10 +345,12 @@
 		322D58031F065272001A5615 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				322387251F25FA7900FBF562 /* program.json */,
+				320BEA7A1F25A0160031EE0D /* test.json */,
+				32766F9F1F21CA0F00617377 /* sendInfrared */,
 				32B5EBB01F219EEC00B8D5E2 /* libOlamiRecognizer.a */,
 				32B5EBB11F219EEC00B8D5E2 /* OlamiRecognizer.h */,
 				32AFC7141F1F4AAF0032C1DB /* MBProgressHUD */,
-				320957C01F18AFBB00A927C2 /* test.json */,
 				32C999131F136026005E6946 /* Masonry */,
 				32F6EB8B1F0A377100906BDD /* fmdb */,
 				322D58081F09DBDB001A5615 /* InfraredData.h */,
@@ -356,6 +363,15 @@
 				32F6EBA21F0A384200906BDD /* FMDBHelp.m */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		32766F9F1F21CA0F00617377 /* sendInfrared */ = {
+			isa = PBXGroup;
+			children = (
+				32766FA01F21CA2500617377 /* WaveService.h */,
+				32766FA11F21CA2500617377 /* WaveService.m */,
+			);
+			name = sendInfrared;
 			sourceTree = "<group>";
 		};
 		32AFC6E91F1F06EB0032C1DB /* resource */ = {
@@ -569,7 +585,6 @@
 				32C998E21F0F719B005E6946 /* HotSearchCollectionViewCell.xib in Resources */,
 				32AFC7521F2057E30032C1DB /* speak@2x.png in Resources */,
 				32AFC74B1F2057E30032C1DB /* change.png in Resources */,
-				320957C11F18AFBB00A927C2 /* test.json in Resources */,
 				32AFC70B1F1F376F0032C1DB /* float.png in Resources */,
 				32AFC7011F1F29070032C1DB /* combinedShape@3x.png in Resources */,
 				32AFC74C1F2057E30032C1DB /* change@2x.png in Resources */,
@@ -583,6 +598,7 @@
 				32AFC73B1F2050FF0032C1DB /* searchIcon@3x.png in Resources */,
 				32AFC74E1F2057E30032C1DB /* more.png in Resources */,
 				32AFC6FA1F1F266A0032C1DB /* operator@2x.png in Resources */,
+				320BEA7B1F25A0160031EE0D /* test.json in Resources */,
 				32AFC7581F2057E30032C1DB /* volume@2x.png in Resources */,
 				32AFC6FB1F1F266A0032C1DB /* operator@3x.png in Resources */,
 				32AFC7111F1F37760032C1DB /* circle.png in Resources */,
@@ -605,6 +621,7 @@
 				32AFC70D1F1F376F0032C1DB /* float@3x.png in Resources */,
 				32AFC7391F2050FF0032C1DB /* searchIcon.png in Resources */,
 				32AFC7371F2050FF0032C1DB /* rectangle12@2x.png in Resources */,
+				322387261F25FA7900FBF562 /* program.json in Resources */,
 				32AFC74F1F2057E30032C1DB /* more@2x.png in Resources */,
 				32AFC7121F1F37760032C1DB /* circle@2x.png in Resources */,
 				32AFC7001F1F29070032C1DB /* combinedShape@2x.png in Resources */,
@@ -660,6 +677,7 @@
 				32C9989F1F0CE3AE005E6946 /* RCHeaderChooseViewScrollView.m in Sources */,
 				32C998971F0CBB92005E6946 /* OperatorVC.m in Sources */,
 				32C998E31F0F719B005E6946 /* HotSearchTableViewCell.m in Sources */,
+				32766FA21F21CA2500617377 /* WaveService.m in Sources */,
 				322D58131F09E38E001A5615 /* CommonHeadFile.m in Sources */,
 				322D580D1F09E1EE001A5615 /* TVProgramData.m in Sources */,
 				32C9990A1F135A34005E6946 /* ContentView.m in Sources */,
@@ -785,6 +803,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3CAWU27LX9;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = RemoteControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -804,6 +823,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3CAWU27LX9;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = RemoteControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

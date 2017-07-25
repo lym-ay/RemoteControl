@@ -174,9 +174,14 @@
     NSArray *arry = [[FMDBHelp sharedFMDBHelp] qureyWithSql:searchSql];
     NSDictionary *dic = arry[0];
     NSString *result = [dic objectForKey:@"pulseData"];
-    NSLog(@"result is %@",result);
+    //NSLog(@"result is %@",result);
     return result;
 }
 
-
+- (NSDictionary *)searchData:(NSString*)index {
+    NSString *searchSql = [NSString stringWithFormat:@"select usercode,datacodevalue from pulseTable where pulseID = '%@'",index];
+    NSArray *arry = [[FMDBHelp sharedFMDBHelp] qureyWithSql:searchSql];
+    NSDictionary *dic = arry[0];
+    return dic;
+}
 @end
