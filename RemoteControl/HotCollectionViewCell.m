@@ -1,30 +1,25 @@
 //
-//  ProgramCollectionViewCell.m
+//  HotCollectionViewCell.m
 //  RemoteControl
 //
-//  Created by olami on 2017/7/10.
+//  Created by olami on 2017/7/25.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
-#import "ProgramCollectionViewCell.h"
+#import "HotCollectionViewCell.h"
 #import "ContentViewCollectionViewCell.h"
-#import "SmallCollectionViewCell.h"
 #import "Macro.h"
 
-
-static NSString *commonID = @"CommonCell";
-static NSString *smallID = @"SmallCommonCell";
-
-@interface ProgramCollectionViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+static NSString *reuseID = @"itemCell";
+@interface HotCollectionViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,retain) UICollectionView *collectionView;
-
 
 @end
 
-@implementation ProgramCollectionViewCell
-
+@implementation HotCollectionViewCell
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        NSLog(@"hotCell");
         [self setupUI];
     }
     
@@ -36,6 +31,7 @@ static NSString *smallID = @"SmallCommonCell";
 
 - (void)setupUI {
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = self.bounds.size;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -48,20 +44,13 @@ static NSString *smallID = @"SmallCommonCell";
     _collectionView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.collectionView];
     
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ContentViewCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:commonID];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"SmallCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:smallID];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ContentViewCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseID];
     
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        ContentViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:commonID forIndexPath:indexPath];
-        return cell;
-        
-    }
-    
-    SmallCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:smallID forIndexPath:indexPath];
+    ContentViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
     return cell;
 }
 
@@ -88,7 +77,7 @@ static NSString *smallID = @"SmallCommonCell";
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(15, 15, 10, 15);//分别为上、左、下、右
+    return UIEdgeInsetsMake(15, 15, 5, 15);//分别为上、左、下、右
 }
 
 @end

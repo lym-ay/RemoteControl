@@ -22,18 +22,21 @@
 
 
 
+
 @interface ViewController ()<UITextFieldDelegate,VoiceViewDelegate>{
     SearchView          *searchView;
     NavigationView      *navigationView;
     ProgramSearchView   *programSearchView;
     
 }
-@property (weak, nonatomic) IBOutlet UIView *searchBackView;//保存搜索框的view
 @property (nonatomic, strong) SearchTextField *searchField;
 @property (nonatomic, strong) VoiceView       *voiceView;
 @property (nonatomic, strong) NumberView      *numberView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *voiceBackView;//用来保存VoiceView界面
+@property (weak, nonatomic) IBOutlet UIView *mainBackView;//用来保存显示的界面的图片
+@property (weak, nonatomic) IBOutlet UIView *searchFieldBackView;
+
 
 
 
@@ -45,22 +48,8 @@
     [super viewDidLoad];
     [self setupData];
     [self setupUI];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    
-    
-    
-//    navigationView = [[NavigationView alloc] initWithFrame:CGRectMake(0, 64, Kwidth, Kheight-64)];
-//    [self.view addSubview:navigationView];
-    
-//    searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, Kheight)];
-//    searchView.hidden = YES;
-//    [self.view addSubview:searchView];
-//    
-//    programSearchView = [[ProgramSearchView alloc] initWithFrame:CGRectMake(0, 32, Kwidth, Kheight-64)];
-//    [self.view addSubview:programSearchView];
- 
 }
+
 - (IBAction)buttonAction:(id)sender {
 //    searchView.hidden = NO;
 }
@@ -68,13 +57,14 @@
 
 
 - (void)setupUI {
+    //添加搜索view
     _searchField = [[SearchTextField alloc] init];
     _searchField.delegate = self;
     _searchField.layer.borderWidth =1;
     _searchField.layer.borderColor = COLOR(204, 204, 204, 204).CGColor;
     _searchField.layer.cornerRadius = 5;
     _searchField.layer.masksToBounds = YES;
-    [_searchBackView addSubview:_searchField];
+    [_searchFieldBackView addSubview:_searchField];
     _searchField.placeholder  = @"搜索电视节目/频道";
     
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchIcon"]];
@@ -95,7 +85,6 @@
  
     
     //录音界面
-    
     _voiceView = [[VoiceView alloc] initWithFrame:_voiceBackView.frame];
     _voiceBackView.backgroundColor = COLOR(24, 49, 69, 1);
     _voiceView.delegate = self;
@@ -117,6 +106,14 @@
         }];
     };
     [self.view addSubview:_numberView];
+    
+    //首页导航页面
+    navigationView = [[NavigationView alloc] initWithFrame:CGRectMake(0, 40, Kwidth, Kheight)];
+    [_mainBackView addSubview:navigationView];
+    
+    //搜索页面，默认隐藏
+    searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, Kwidth, Kheight)];
+    [self.view addSubview:searchView];
 
 }
 
@@ -170,7 +167,9 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    NSLog(@"test");
+    [UIView animateWithDuration:0.2 animations:^{
+        searchView.hidden = NO;
+    }];
     return NO;
 }
 

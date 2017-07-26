@@ -42,11 +42,12 @@ static NSString *sectionHeaderID = @"sectionHeader";
                     ];
     self.tagArray =[NSMutableArray arrayWithArray:array];
     
-    self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 88, Kwidth, 32)];
+    self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 0, Kwidth, 32)];
+    self.headerView.backgroundColor = COLOR(245, 245, 245, 1);
     
     [self addSubview:self.headerView];
     
-    [self.headerView setUpTitleArray:array titleColor:nil titleSelectedColor:nil titleFontSize:0];
+    [self.headerView setUpTitleArray:array titleColor:COLOR(51, 51, 51, 1) titleSelectedColor:COLOR(42, 161, 222, 1) titleFontSize:16];
     __weak typeof(self) weakSelf = self;
     self.headerView.btnChooseClickReturn = ^(NSInteger x) {
         NSLog(@"点击了第%ld个按钮",x+1);
@@ -63,7 +64,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 120, Kwidth, Kheight) collectionViewLayout:layout];
+    self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 32, Kwidth, self.frame.size.height) collectionViewLayout:layout];
     self.collectionView.delegate =self;
     self.collectionView.dataSource = self;
     self.collectionView.bounces = YES;
@@ -82,14 +83,14 @@ static NSString *sectionHeaderID = @"sectionHeader";
     switch (indexPath.row) {
         case 0: {
             ProgramCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:programID forIndexPath:indexPath];
-            cell.backgroundColor = [UIColor blueColor];
+          
             return cell;
         }
             
             break;
         case 1: {
             ScheduleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:scheduleID forIndexPath:indexPath];
-            cell.backgroundColor = [UIColor redColor];
+             
             return cell;
         }
             break;

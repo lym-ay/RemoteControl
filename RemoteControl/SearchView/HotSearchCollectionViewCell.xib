@@ -49,7 +49,7 @@
                 <outlet property="backView" destination="TXK-hB-oE3" id="v7q-6F-BtU"/>
                 <outlet property="labeltitle" destination="1RK-HB-0q8" id="vek-eS-tM9"/>
             </connections>
-            <point key="canvasLocation" x="472" y="294"/>
+            <point key="canvasLocation" x="-40" y="105"/>
         </collectionViewCell>
     </objects>
 </document>

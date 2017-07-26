@@ -2,219 +2,128 @@
 //  SearchView.m
 //  RemoteControl
 //
-//  Created by olami on 2017/7/7.
+//  Created by olami on 2017/7/25.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
 #import "SearchView.h"
-#import "HotSearchTableViewCell.h"
-#import "SearchHistoryRecordfooter.h"
-#import "SearchRecordTableViewCell.h"
 #import "Macro.h"
+#import "SearchTextField.h"
+#import "Masonry.h"
+#import "SearchTableView.h"
+#import "ProgramSearchView.h"
 
-
-#define KsearchRecordCellId @"SearcgRecodeCell"
-#define KHotSearchCellId @"KHotSearchCell"
-#define KHotSearchFooterClass @"SearchHistoryRecordfooter"
-#define KHotsearchFooterId @"HotSearchFooter"
-#define KHotsearchFooterId2 @"HotSearchFooter2"
-#define KSearchRecordArr @"KsearchRecordArr"//搜索的记录
-
-
-@interface SearchView()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *SearchTableView;//搜索的记录
-@property (nonatomic, strong) NSMutableArray *dataArr;
-@property (nonatomic, strong) NSMutableArray *HotDataArr;
-@property (nonatomic, assign) BOOL isChange;
+@interface SearchView()<UITextFieldDelegate,SearchTableViewDelegate>
+@property (nonatomic, strong) UIView *searchFieldBackView;
+@property (nonatomic, strong) SearchTextField *searchField;
+@property (nonatomic, strong) SearchTableView *searchTableView;
+@property (nonatomic, strong) ProgramSearchView *programSearchView;
 @end
 
 @implementation SearchView
 
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self loadingData];
+        [self setupData];
+        [self setupView];
     }
     
     return self;
 }
 
-- (NSMutableArray *)dataArr {
-    if (!_dataArr) {
-        _dataArr = [NSMutableArray new];
-    }
-    return _dataArr;
+
+- (void)setupData {
+    
 }
-- (NSMutableArray *)HotDataArr{
-    if (!_HotDataArr) {
-        _HotDataArr = [NSMutableArray new];
-    }
-    return _HotDataArr;
+
+
+-(void)setupView {
+    self.backgroundColor = [UIColor whiteColor];
+    
+    //搜索textField背景栏
+    _searchFieldBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, 40)];
+    _searchFieldBackView.backgroundColor = COLOR(236, 236, 236, 1);
+    [self addSubview:_searchFieldBackView];
+    
+    //搜索框
+    _searchField = [[SearchTextField alloc] init];
+    _searchField.delegate = self;
+    _searchField.layer.borderWidth =1;
+    _searchField.layer.borderColor = COLOR(204, 204, 204, 204).CGColor;
+    _searchField.layer.cornerRadius = 5;
+    _searchField.layer.masksToBounds = YES;
+    [_searchFieldBackView addSubview:_searchField];
+    _searchField.placeholder  = @"搜索电视节目/频道";
+    
+    UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchIcon"]];
+    img.frame = CGRectMake(10, 0, 20, 20);
+    _searchField.leftView = img;
+    _searchField.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    UIButton *numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    numberButton.frame = CGRectMake(0, 0, 32, 20);
+    [numberButton setImage:[UIImage imageNamed:@"rectangle12"] forState:UIControlStateNormal];
+    [numberButton addTarget:self action:@selector(openNumberView) forControlEvents:UIControlEventTouchUpInside];
+    _searchField.rightView = numberButton;
+    _searchField.rightViewMode = UITextFieldViewModeAlways;
+    [_searchField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_offset(UIEdgeInsetsMake(6, 15, 6, 50));
+    }];
+    
+    //取消按钮
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_searchFieldBackView addSubview:cancelButton];
+    [cancelButton addTarget:self action:@selector(hideView) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(_searchField.mas_top).offset(5);
+        make.left.equalTo(_searchField.mas_right).offset(5);
+    }];
+ 
+    //搜索页面
+    _searchTableView = [[SearchTableView alloc] initWithFrame:CGRectMake(0, 40, Kwidth, Kheight)];
+    _searchTableView.delegate = self;
+    [self addSubview:_searchTableView];
+    
+    //显示搜索结果的页面
+    _programSearchView = [[ProgramSearchView alloc] initWithFrame:CGRectMake(0, 40, Kwidth, Kheight)];
+    _programSearchView.hidden = YES;
+    [self addSubview:_programSearchView];
 }
--(UITableView *)SearchTableView{
-    if (!_SearchTableView) {
+
+- (void)openNumberView {
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+   return YES;
+}
+
+- (void)hideView {
+    _programSearchView.hidden = YES;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.hidden = YES;
         
-        _SearchTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, Kwidth, Kheight-64) style:UITableViewStylePlain];
-        _SearchTableView.delegate = self;
-        _SearchTableView.dataSource = self;
-        [self addSubview:_SearchTableView];
-        [_SearchTableView registerClass:[SearchRecordTableViewCell class] forCellReuseIdentifier:KsearchRecordCellId];
-        [_SearchTableView registerClass:[HotSearchTableViewCell class] forCellReuseIdentifier:KHotSearchCellId];
-        [_SearchTableView registerNib:[UINib nibWithNibName:KHotSearchFooterClass bundle:nil] forHeaderFooterViewReuseIdentifier:KHotsearchFooterId];
-        [_SearchTableView registerNib:[UINib nibWithNibName:KHotSearchFooterClass bundle:nil] forHeaderFooterViewReuseIdentifier:KHotsearchFooterId2];
-        _SearchTableView.backgroundColor = [UIColor blueColor];
-    }
-    return _SearchTableView;
+    }];
 }
 
-- (void)loadingData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *arr = [defaults objectForKey:KSearchRecordArr];
-    if ((!(arr.count==0))&&(![arr isKindOfClass:[NSNull class]])) {
-        
-        //self.HistoryFooter.deleteBtn.enabled = YES;
-        self.dataArr = [arr mutableCopy];
-    }
-    
-    NSArray *array = @[@"鞋子发送的飞洒发的撒大师法第三方",@"全球时尚",@"天天搞机",@"苏宁易购",@"好",@"热门推荐内容",@"猜你喜欢"];
-    [self.HotDataArr addObject:array];
-    [self.SearchTableView reloadData];
+-(void)searchData:(NSString *)name {
+    _searchField.text = name;
+    [UIView animateWithDuration:0.2 animations:^{
+        _programSearchView.hidden = NO;
+    }];
 }
-
-- (void)deleteBtnAction:(UIButton *)sender{
-    
-}
-
-
-//重写手势的方法 手势会影响 cell的点击
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
-        
-        return NO;
-    }else{
-        return YES;
-    }
-    
-}
-
-
-#pragma mark - tableView的代理方法
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
-    return 2;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return self.dataArr.count;
-    }else{
-        return 1;
-    }
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section ==0 ) {
-        SearchRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KsearchRecordCellId];
-        if (self.dataArr.count!=0) {
-            cell.labeText.text = self.dataArr[self.dataArr.count-1-indexPath.row];
-        }
-        return cell;
-    }else{
-        HotSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KHotSearchCellId];
-        if (self.HotDataArr.count !=0) {
-            if (self.isChange == NO) {
-                [cell infortdataArr:[self.HotDataArr firstObject]];
-            }else{
-                [cell infortdataArr:[self.HotDataArr lastObject]];
-            }
-            
-            cell.block = ^(NSInteger index){
-                //                SearchViewController *search = [SearchViewController new];
-                //                search.title = self.HotDataArr[index];
-                //                [self.navigationController pushViewController:search animated:YES];
-                NSLog(@"index is %ld",index);
-            };
-        }
-        //        cell.DBlock =^{
-        //            [self.BYsearchTextFd resignFirstResponder];
-        //        };
-        return cell;
-    }
-    
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 45;
-    }else{
-        return 300;
-    }
-    
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    if (section == 0) {
-        SearchHistoryRecordfooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KHotsearchFooterId];
-        footer.img.image = [UIImage imageNamed:@"历史搜索"];
-        footer.labelHis.text = @"历史搜索";
-        UIButton *Deletbtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        Deletbtn.frame = CGRectMake(self.frame.size.width-50,0,40, 45);
-        [Deletbtn setImage:[UIImage imageNamed:@"历史删除"] forState:UIControlStateNormal];
-        [footer addSubview:Deletbtn];
-        [Deletbtn addTarget:self action:@selector(deleteBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyBoardHide:)];
-        [footer addGestureRecognizer:tap];
-        return footer;
-    }else{
-        SearchHistoryRecordfooter *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KHotsearchFooterId2];
-        footer.img.image = [UIImage imageNamed:@"热门搜索"];
-        footer.labelHis.text = @"热门搜索";
-        UIButton *ChangeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        ChangeBtn.frame = CGRectMake(self.frame.size.width-80,0, 60,45);
-        [ChangeBtn setTitle:@"换一批" forState:UIControlStateNormal];
-        [ChangeBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [footer addSubview:ChangeBtn];
-        [ChangeBtn addTarget:self action:@selector(changeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(keyBoardHide:)];
-        [footer addGestureRecognizer:tap];
-        return footer;
-    }
-    
-    
-}
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,self.frame.size.width,1)];
-    if (section == 0) {
-        
-        UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(15, 0, self.frame.size.width-15, 1)];
-        view1.backgroundColor = COLOR(123, 123, 123, 1);
-        [footerView addSubview:view1];
-    }
-    return footerView;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
-    return 1;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        
-        return 45;
-        
-    }else{
-        return 45;
-    }
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        
-        
-    }
-    
-}
-
-
-
 
 @end

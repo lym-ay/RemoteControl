@@ -1,12 +1,13 @@
 //
-//  ProgramCollectionViewCell.m
+//  NaviagtionCollectionViewCell.m
 //  RemoteControl
 //
-//  Created by olami on 2017/7/10.
+//  Created by olami on 2017/7/25.
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
-#import "ProgramCollectionViewCell.h"
+//首页每个item对应的cell
+#import "NaviagtionCollectionViewCell.h"
 #import "ContentViewCollectionViewCell.h"
 #import "SmallCollectionViewCell.h"
 #import "Macro.h"
@@ -15,23 +16,24 @@
 static NSString *commonID = @"CommonCell";
 static NSString *smallID = @"SmallCommonCell";
 
-@interface ProgramCollectionViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface NaviagtionCollectionViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,retain) UICollectionView *collectionView;
 
 
 @end
 
-@implementation ProgramCollectionViewCell
+@implementation NaviagtionCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        NSLog(@"navigation");
         [self setupUI];
     }
     
     return self;
 }
 
-
+ 
 
 
 - (void)setupUI {
@@ -58,7 +60,7 @@ static NSString *smallID = @"SmallCommonCell";
     if (indexPath.row == 0) {
         ContentViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:commonID forIndexPath:indexPath];
         return cell;
-        
+
     }
     
     SmallCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:smallID forIndexPath:indexPath];

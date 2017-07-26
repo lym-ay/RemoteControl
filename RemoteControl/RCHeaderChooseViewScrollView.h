@@ -6,6 +6,7 @@
 //  Copyright © 2017年 VIA Technologies, Inc. & OLAMI Team. All rights reserved.
 //
 
+//标题头，用来显示节目的分类 例如“热门 本地 央视”
 #import <UIKit/UIKit.h>
 typedef void(^btnChooseClickBlock)(NSInteger x);
 

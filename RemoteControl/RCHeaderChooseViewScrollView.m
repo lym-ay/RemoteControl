@@ -11,9 +11,7 @@
 
 @interface RCHeaderChooseViewScrollView()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIButton* selectedBtn;
-
 @property (nonatomic, strong) UIView* sliderView;
-
 @property (nonatomic, strong) NSMutableArray *btnArray;
 
 @end
@@ -92,7 +90,7 @@
         [btn setTitleColor:titleColor forState:UIControlStateNormal];
         [btn setTitleColor:titleSelectedColor forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundColor:[UIColor whiteColor]];
+        [btn setBackgroundColor:[UIColor clearColor]];
         
         if (i==0) {
             btn.selected=YES;

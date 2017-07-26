@@ -30,7 +30,7 @@
         _HotCollectionView.delegate = self;
         _HotCollectionView.dataSource = self;
         _HotCollectionView.scrollEnabled = NO;
-        _HotCollectionView.backgroundColor = [UIColor redColor];
+        _HotCollectionView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:_HotCollectionView];
         [_HotCollectionView registerNib:[UINib nibWithNibName:KHotSearchCollectClass bundle:nil] forCellWithReuseIdentifier:KHotSearchCellId];
 //        [_HotCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:KSearchHotFooterId];
@@ -51,6 +51,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 - (void)KeyBoardHide:(UITapGestureRecognizer *)tap{
     
@@ -77,17 +78,12 @@
     return UIEdgeInsetsMake(15,15, 15, 15);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    self.block(indexPath.row);
+    HotSearchCollectionViewCell *cell =(HotSearchCollectionViewCell*) [collectionView cellForItemAtIndexPath:indexPath];
+    NSString *str = cell.labeltitle.text;
+    self.block(str);
     
 }
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//    UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:KSearchHotFooterId forIndexPath:indexPath];
-//    footer.backgroundColor = [UIColor clearColor];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(KeyBoardHide:)];
-//    [footer addGestureRecognizer:tap];
-//    return footer;
-//}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     
     return CGSizeMake(self.frame.size.width, 300);

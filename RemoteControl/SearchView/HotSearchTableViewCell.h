@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void (^BYDBlock)(void);
-typedef void(^Myblock) (NSInteger index);
+typedef void(^Myblock) (NSString *name);
 @interface HotSearchTableViewCell : UITableViewCell
 
 - (void)infortdataArr:(NSMutableArray *)arr;

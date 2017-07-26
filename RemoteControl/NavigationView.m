@@ -7,9 +7,11 @@
 //
 
 #import "NavigationView.h"
-
 #import "RCHeaderChooseViewScrollView.h"
+#import "NaviagtionCollectionViewCell.h"
+#import "HotCollectionViewCell.h"
 #import "Macro.h"
+ 
 
 @interface NavigationView()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,retain) UICollectionView *collectionView;
@@ -18,8 +20,7 @@
 @end
 
 
-static NSString *reuseID = @"itemCell";
-static NSString *sectionHeaderID = @"sectionHeader";
+static NSString *navigationID = @"navigationCell";
 
 @implementation NavigationView
 
@@ -50,11 +51,11 @@ static NSString *sectionHeaderID = @"sectionHeader";
                      ];
     self.tagArray =[NSMutableArray arrayWithArray:array];
     
-    self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 88, Kwidth, 32)];
-    
+    self.headerView=[[RCHeaderChooseViewScrollView alloc]initWithFrame:CGRectMake(0, 0, Kwidth, 32)];
+    self.headerView.backgroundColor = COLOR(245, 245, 245, 1);
     [self addSubview:self.headerView];
     
-    [self.headerView setUpTitleArray:array titleColor:nil titleSelectedColor:nil titleFontSize:0];
+    [self.headerView setUpTitleArray:array titleColor:[UIColor blackColor] titleSelectedColor:COLOR(42, 161, 222, 1) titleFontSize:16];
     __weak typeof(self) weakSelf = self;
     self.headerView.btnChooseClickReturn = ^(NSInteger x) {
         NSLog(@"点击了第%ld个按钮",x+1);
@@ -66,35 +67,58 @@ static NSString *sectionHeaderID = @"sectionHeader";
 
 -(void)createCollectionView{
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = self.bounds.size;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 120, Kwidth, Kheight) collectionViewLayout:layout];
+    self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 32, Kwidth, self.frame.size.height) collectionViewLayout:layout];
     self.collectionView.delegate =self;
     self.collectionView.dataSource = self;
     self.collectionView.bounces = YES;
     self.collectionView.pagingEnabled = YES;
+    _collectionView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.collectionView];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseID];
+    [self.collectionView registerClass:[NaviagtionCollectionViewCell class] forCellWithReuseIdentifier:navigationID];
+ 
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return self.tagArray.count;
+    return _tagArray.count;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseID forIndexPath:indexPath];
-    cell.backgroundColor = RandomColor;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:{
+            NaviagtionCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:navigationID forIndexPath:indexPath];
+            return  cell;
+        }
+            
+            break;
+        case 1: {
+           NaviagtionCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:navigationID forIndexPath:indexPath];
+           return cell;
+            
+        }
+            break;
+         
+        default:
+            break;
+    }
+    
+    NaviagtionCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:navigationID forIndexPath:indexPath];
     return cell;
+    
+    return nil;
+   
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(Kwidth, self.frame.size.height);
 }
 
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat offsetx =scrollView.contentOffset.x;
     NSInteger index = offsetx/Kwidth;
     [self.headerView scollToCurrentButtonWithIndex:index];
