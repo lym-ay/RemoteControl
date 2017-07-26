@@ -40,6 +40,7 @@
 -(id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupData];
+        [self setupUI];
     }
     
     return self;
@@ -59,6 +60,19 @@
     
     
     _slotValue = [[NSMutableArray alloc] init];
+}
+
+
+- (void)setupUI {
+    self.backgroundColor = COLOR(24, 49, 69, 1);
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 32, Kwidth, 20)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = COLOR(255, 255, 255, 1);
+    label.font = [UIFont fontWithName:FONTFAMILY size:18];
+    label.text = @"说出你想要搜索的频道或节目";
+    [self addSubview:label];
+
 }
 
 

@@ -24,6 +24,9 @@
 		32346FF41F273F24008D8C8E /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32346FF31F273F24008D8C8E /* SearchView.m */; };
 		32346FFF1F285A06008D8C8E /* ScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32346FFD1F285A06008D8C8E /* ScheduleTableViewCell.m */; };
 		323470001F285A06008D8C8E /* ScheduleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32346FFE1F285A06008D8C8E /* ScheduleTableViewCell.xib */; };
+		323470041F286CAA008D8C8E /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 323470011F286CAA008D8C8E /* forward.png */; };
+		323470051F286CAA008D8C8E /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 323470021F286CAA008D8C8E /* forward@2x.png */; };
+		323470061F286CAA008D8C8E /* forward@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 323470031F286CAA008D8C8E /* forward@3x.png */; };
 		32766FA21F21CA2500617377 /* WaveService.m in Sources */ = {isa = PBXBuildFile; fileRef = 32766FA11F21CA2500617377 /* WaveService.m */; };
 		32AFC6F91F1F266A0032C1DB /* operator.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AFC6F61F1F266A0032C1DB /* operator.png */; };
 		32AFC6FA1F1F266A0032C1DB /* operator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32AFC6F71F1F266A0032C1DB /* operator@2x.png */; };
@@ -146,6 +149,9 @@
 		32346FFC1F285A06008D8C8E /* ScheduleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewCell.h; sourceTree = "<group>"; };
 		32346FFD1F285A06008D8C8E /* ScheduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewCell.m; sourceTree = "<group>"; };
 		32346FFE1F285A06008D8C8E /* ScheduleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleTableViewCell.xib; sourceTree = "<group>"; };
+		323470011F286CAA008D8C8E /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
+		323470021F286CAA008D8C8E /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
+		323470031F286CAA008D8C8E /* forward@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@3x.png"; sourceTree = "<group>"; };
 		32766FA01F21CA2500617377 /* WaveService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveService.h; sourceTree = "<group>"; };
 		32766FA11F21CA2500617377 /* WaveService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveService.m; sourceTree = "<group>"; };
 		32AFC6F61F1F266A0032C1DB /* operator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = operator.png; sourceTree = "<group>"; };
@@ -416,6 +422,9 @@
 		32AFC6E91F1F06EB0032C1DB /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				323470011F286CAA008D8C8E /* forward.png */,
+				323470021F286CAA008D8C8E /* forward@2x.png */,
+				323470031F286CAA008D8C8E /* forward@3x.png */,
 				32F966BD1F27142A00F6186A /* picplaceholder.png */,
 				32F966BE1F27142A00F6186A /* picplaceholder@2x.png */,
 				32F966BF1F27142A00F6186A /* picplaceholder@3x.png */,
@@ -661,6 +670,7 @@
 				32346FF11F272A13008D8C8E /* SmallCollectionViewCell.xib in Resources */,
 				32F966C61F27142A00F6186A /* picplaceholder2.png in Resources */,
 				32AFC70B1F1F376F0032C1DB /* float.png in Resources */,
+				323470061F286CAA008D8C8E /* forward@3x.png in Resources */,
 				32AFC7011F1F29070032C1DB /* combinedShape@3x.png in Resources */,
 				32AFC74C1F2057E30032C1DB /* change@2x.png in Resources */,
 				32F966BC1F27124D00F6186A /* ContentViewCollectionViewCell.xib in Resources */,
@@ -674,6 +684,7 @@
 				32AFC7381F2050FF0032C1DB /* rectangle12@3x.png in Resources */,
 				32F966C51F27142A00F6186A /* picplaceholder@3x.png in Resources */,
 				32AFC73B1F2050FF0032C1DB /* searchIcon@3x.png in Resources */,
+				323470051F286CAA008D8C8E /* forward@2x.png in Resources */,
 				32AFC74E1F2057E30032C1DB /* more.png in Resources */,
 				32AFC6FA1F1F266A0032C1DB /* operator@2x.png in Resources */,
 				320BEA7B1F25A0160031EE0D /* test.json in Resources */,
@@ -689,6 +700,7 @@
 				322D57F41F06481A001A5615 /* Assets.xcassets in Resources */,
 				32AFC7071F1F36B10032C1DB /* OperatorViewCell.xib in Resources */,
 				323470001F285A06008D8C8E /* ScheduleTableViewCell.xib in Resources */,
+				323470041F286CAA008D8C8E /* forward.png in Resources */,
 				32AFC7611F205D6D0032C1DB /* voiceBack@2x.png in Resources */,
 				32AFC6F91F1F266A0032C1DB /* operator.png in Resources */,
 				32AFC7621F205D6D0032C1DB /* voiceBack@3x.png in Resources */,
