@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIView *voiceBackView;//用来保存VoiceView界面
 @property (weak, nonatomic) IBOutlet UIView *mainBackView;//用来保存显示的界面的图片
 @property (weak, nonatomic) IBOutlet UIView *searchFieldBackView;
+@property (weak, nonatomic) IBOutlet UIView *toolsView;//工具栏
+@property (weak, nonatomic) IBOutlet UIButton *voiceButton;
 
 
 
@@ -95,9 +97,15 @@
     [_mainBackView addSubview:navigationView];
     
     //搜索页面，默认隐藏
-    searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, Kwidth, Kheight)];
+    searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, Kheight)];
     searchView.hidden = YES;
-    [self.view addSubview:searchView];
+    __weak typeof(self) weakSelf = self;
+    searchView.showBlock = ^{
+        weakSelf.toolsView.hidden = NO;
+        weakSelf.voiceButton.hidden = NO;
+    };
+    
+    [_mainBackView addSubview:searchView];
     
     //数字键盘界面,默认隐藏
     _numberView = [[NumberView alloc] initWithFrame:CGRectMake(0, Kheight, Kwidth, Kheight)];
@@ -174,6 +182,8 @@
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    _toolsView.hidden = YES;
+    _voiceButton.hidden = YES;
     [UIView animateWithDuration:0.2 animations:^{
         searchView.hidden = NO;
     }];

@@ -307,7 +307,9 @@
                         <outlet property="mainBackView" destination="d6s-MT-74G" id="nmn-Qx-8ut"/>
                         <outlet property="progressView" destination="Eig-jH-6bR" id="jQe-2W-0Fo"/>
                         <outlet property="searchFieldBackView" destination="rVs-rb-nCN" id="p3g-tT-S2d"/>
+                        <outlet property="toolsView" destination="SUQ-vn-NXQ" id="cak-q0-TuY"/>
                         <outlet property="voiceBackView" destination="dva-KQ-Zp2" id="sft-zz-APn"/>
+                        <outlet property="voiceButton" destination="MWW-5H-q4h" id="1X2-g9-JKj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

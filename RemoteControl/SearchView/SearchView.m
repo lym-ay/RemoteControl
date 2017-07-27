@@ -129,6 +129,8 @@
         self.hidden = YES;
         
     }];
+    
+    self.showBlock();
 }
 
 
@@ -136,9 +138,8 @@
 -(void)searchData:(NSString *)name {
     //[hub showAnimated:YES];
     _searchField.text = name;
-    [UIView animateWithDuration:0.2 animations:^{
-        _programSearchView.hidden = NO;
-    }];
+    _programSearchView.hidden = NO;
+    self.showBlock();
     [self parserJsonFile];
 }
 
@@ -148,6 +149,7 @@
         [UIView animateWithDuration:0.2 animations:^{
             _programSearchView.hidden = NO;
         }];
+        self.showBlock();
         [textField resignFirstResponder];
         return YES;
     }
