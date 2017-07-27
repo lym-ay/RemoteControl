@@ -15,7 +15,10 @@
 #import "UserManager.h"
 #import <CoreLocation/CoreLocation.h>
 
+#define DBName @"RemoteControlDB"
+
 static NSString   *OperationCell              =  @"OperationViewTableViewCellId";
+
 @interface OperatorVC ()<CLLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource>{
     MBProgressHUD *hub;
 }
@@ -26,7 +29,7 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, copy) NSString            *cityName;
-@property (nonatomic, copy) NSMutableArray      *companyNameArry;
+@property (nonatomic, copy) NSArray      *companyNameArry;
 @property (nonatomic, copy) NSMutableArray      *cellArry;//保存所有生成的cell
 
 @end
@@ -68,21 +71,12 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
 
 
 - (void)initData {
-    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
-    if (!pulseDBName) {
-        [[InfraredData sharedInfraredData] parserJSON];
-        NSString *dbName = [InfraredData sharedInfraredData].dbName;
-        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
-    }else{
-        [InfraredData sharedInfraredData].dbName = pulseDBName;
-    }
+    [InfraredData sharedInfraredData].dbName = DBName;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    [[InfraredData sharedInfraredData] parserJSON:data];
     
-    _companyNameArry = [[NSMutableArray alloc] init];
-    _companyNameArry[0] = @"东方有线";
-    _companyNameArry[1] = @"百视通";
-    _companyNameArry[2] = @"海信";
-    [UserManager shareInstance].companyNameArry = [[NSArray alloc] initWithArray:_companyNameArry];
+    [self getCompanyInfo:nil];
     
     
     _cellArry = [[NSMutableArray alloc] init];
@@ -92,6 +86,37 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
     _tableView.allowsSelection = YES;
     [_tableView registerNib:[UINib nibWithNibName:@"OperatorViewCell" bundle:nil]  forCellReuseIdentifier:OperationCell];
     
+}
+
+
+
+
+-(void)getCompanyInfo:(NSData*)jsonFile {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"compnay" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if (err) {
+        NSLog(@"error is %@",err.localizedDescription);
+        return;
+    }
+    
+    NSString *provice = [dic objectForKey:@"province"];
+    NSString *version = [dic objectForKey:@"version"];
+    NSArray *arry = [dic objectForKey:@"support"];
+    NSMutableArray *tmpArry = [[NSMutableArray alloc] init];
+    for (int i=0; i<arry.count; i++) {
+        NSDictionary *tmpDic = arry[i];
+        [tmpArry addObject:[tmpDic objectForKey:@"company"]];
+    }
+    _companyNameArry = [[NSArray alloc] initWithArray:tmpArry];
+    [UserManager shareInstance].companyNameArry = [[NSArray alloc] initWithArray:_companyNameArry];
+    
+    
+
 }
 
 

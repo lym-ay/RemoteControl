@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//搜索页面和显示搜索结果的页面 SearchTableView ProgramSearchView为其子页面
 @interface SearchView : UIView
 
 @end

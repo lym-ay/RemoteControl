@@ -70,10 +70,10 @@
 #pragma mark - 打开或者创建数据库
 - (BOOL)openOrCreateDB {
     if ([self.database open]) {
-        //NSLog(@"数据库打开成功");
+        NSLog(@"数据库打开成功");
         return YES;
     } else {
-        //NSLog(@"数据库打开失败");
+        NSLog(@"数据库打开失败");
         return NO;
     }
 }

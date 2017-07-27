@@ -12,8 +12,12 @@
 #import "Masonry.h"
 #import "SearchTableView.h"
 #import "ProgramSearchView.h"
+#import "MBProgressHUD.h"
+#import "ScheduleMode.h"
 
-@interface SearchView()<UITextFieldDelegate,SearchTableViewDelegate>
+@interface SearchView()<UITextFieldDelegate,SearchTableViewDelegate>{
+    MBProgressHUD *hub;
+}
 @property (nonatomic, strong) UIView *searchFieldBackView;
 @property (nonatomic, strong) SearchTextField *searchField;
 @property (nonatomic, strong) SearchTableView *searchTableView;
@@ -33,7 +37,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupData];
-        [self setupView];
+        [self setupUI];
     }
     
     return self;
@@ -45,7 +49,7 @@
 }
 
 
--(void)setupView {
+-(void)setupUI {
     self.backgroundColor = [UIColor whiteColor];
     
     //搜索textField背景栏
@@ -60,6 +64,7 @@
     _searchField.layer.borderColor = COLOR(204, 204, 204, 204).CGColor;
     _searchField.layer.cornerRadius = 5;
     _searchField.layer.masksToBounds = YES;
+    _searchField.returnKeyType = UIReturnKeySearch;
     [_searchFieldBackView addSubview:_searchField];
     _searchField.placeholder  = @"搜索电视节目/频道";
     
@@ -101,29 +106,74 @@
     _programSearchView = [[ProgramSearchView alloc] initWithFrame:CGRectMake(0, 40, Kwidth, Kheight)];
     _programSearchView.hidden = YES;
     [self addSubview:_programSearchView];
+    
+    //加载显示
+    hub = [[MBProgressHUD alloc] initWithView:self];
+    hub.label.text = @"加载中，请稍后...";
+    hub.mode = MBProgressHUDModeIndeterminate;
+    [self addSubview:hub];
+
 }
 
 - (void)openNumberView {
-    
+    //发送打开数字键盘的消息
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"openNumberView" object:nil userInfo:nil]];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-   return YES;
-}
 
 - (void)hideView {
+    [_searchField resignFirstResponder];//隐藏键盘
     _programSearchView.hidden = YES;
+    //因为点击progremSearchView上的取消按钮要回到主页面，所以搜索页面要隐藏
     [UIView animateWithDuration:0.2 animations:^{
         self.hidden = YES;
         
     }];
 }
 
+
+#pragma mark --SearchTableViewDelegate 
 -(void)searchData:(NSString *)name {
+    //[hub showAnimated:YES];
     _searchField.text = name;
     [UIView animateWithDuration:0.2 animations:^{
         _programSearchView.hidden = NO;
     }];
+    [self parserJsonFile];
 }
+
+#pragma mark--UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField.text.length != 0 && !textField.text.isEmpty) {
+        [UIView animateWithDuration:0.2 animations:^{
+            _programSearchView.hidden = NO;
+        }];
+        [textField resignFirstResponder];
+        return YES;
+    }
+    
+    return NO;
+    
+}
+
+
+-(void)parserJsonFile {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"program" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if (err) {
+        NSLog(@"error is %@",err.localizedDescription);
+        return;
+    }
+    
+   
+    [[ScheduleMode shareInstance] initWithData:dic];
+
+}
+
 
 @end

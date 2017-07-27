@@ -20,7 +20,7 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
 @property (weak, nonatomic) IBOutlet UILabel *labelCityName;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSString            *cityName;
-@property (nonatomic, copy) NSMutableArray      *companyNameArry;
+@property (nonatomic, copy) NSArray             *companyNameArry;
 @property (nonatomic, copy) NSMutableArray      *cellArry;//保存所有生成的cell
 
 
@@ -31,19 +31,12 @@ static NSString   *OperationCell              =  @"OperationViewTableViewCellId"
 
 - (void)viewWillAppear:(BOOL)animated {
     _labelCityName.text = @"当前城市：上海";
+    _companyNameArry = [[NSArray alloc] initWithArray:[UserManager shareInstance].companyNameArry];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    _companyNameArry = [[NSMutableArray alloc] init];
-    _companyNameArry[0] = @"东方有线";
-    _companyNameArry[1] = @"百视通";
-    _companyNameArry[2] = @"海信";
-    [UserManager shareInstance].companyNameArry = [[NSArray alloc] initWithArray:_companyNameArry];
-    
     [self setupUI];
 }
 

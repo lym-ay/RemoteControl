@@ -9,13 +9,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RemoteControl/ContentViewCollectionViewCell.m"
-            timestampString = "522757114.169302"
+            filePath = "RemoteControl/SearchView/ScheduleMode.m"
+            timestampString = "522834537.134508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "-awakeFromNib"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-setDatas"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RemoteControl/SettingViewController.m"
+            timestampString = "522836316.890642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-showOperatorVC"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

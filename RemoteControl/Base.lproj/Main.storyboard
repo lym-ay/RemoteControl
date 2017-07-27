@@ -12,7 +12,7 @@
         <!--Select OperatorVC-->
         <scene sceneID="6y7-kT-X3E">
             <objects>
-                <viewController id="3sM-Xh-cVj" customClass="SelectOperatorVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectOperatorSID" id="3sM-Xh-cVj" customClass="SelectOperatorVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jnj-Zw-vxE"/>
                         <viewControllerLayoutGuide type="bottom" id="2Yx-yw-TlY"/>
@@ -140,15 +140,15 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="有线电视运营商设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYH-Uw-CP2">
-                                        <rect key="frame" x="15" y="112" width="200" height="25"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="有线电视运营商设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYH-Uw-CP2">
+                                        <rect key="frame" x="15" y="112" width="272" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关于我们" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXh-iX-xiL">
-                                        <rect key="frame" x="15" y="166" width="200" height="25"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关于我们" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXh-iX-xiL">
+                                        <rect key="frame" x="15" y="160" width="286" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -167,7 +167,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="forward.png"/>
                                         <connections>
-                                            <segue destination="3sM-Xh-cVj" kind="show" id="4lj-n0-7ou"/>
+                                            <segue destination="3sM-Xh-cVj" kind="show" id="SQp-Yv-Bj5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -193,6 +193,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.10196078431372549" green="0.19215686274509802" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="aboutMeLabel" destination="qXh-iX-xiL" id="HTf-Ai-Oc8"/>
+                        <outlet property="operatorLabel" destination="VYH-Uw-CP2" id="Lea-mS-qbq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W72-Px-Hdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

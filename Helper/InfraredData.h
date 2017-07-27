@@ -11,7 +11,7 @@
 @interface InfraredData : NSObject
 + (InfraredData*)sharedInfraredData;
 @property (nonatomic,copy) NSString *dbName;
- - (void)parserJSON;
+- (void)parserJSON:(NSData*)jsonData;
 - (NSString *)searchPulseData:(NSString*)pulseID;
 - (NSDictionary *)searchData:(NSString*)index;
 @end

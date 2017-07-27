@@ -10,6 +10,8 @@
 #define Macro_h
 
 
+#import "NSString+Extension.h"
+
 #define COLOR(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 #define RandomColor [UIColor colorWithRed:arc4random_uniform(255) / 255.0 green:arc4random_uniform(255) / 255.0 blue:arc4random_uniform(255) / 255.0 alpha:1.0];
 #define Kwidth [UIScreen mainScreen].bounds.size.width
@@ -29,6 +31,7 @@ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
 NSString *str = [dateFormatter stringFromDate:[NSDate date]];\
 fprintf(stderr,"%s %s:%d %s\n",[str UTF8String], [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);\
 }
+
 
 
 #endif /* Macro_h */

@@ -84,28 +84,11 @@
     }];
  
     
-    //录音界面
+    //录音界面,默认隐藏
     _voiceView = [[VoiceView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, 247)];
     _voiceBackView.backgroundColor = COLOR(24, 49, 69, 1);
     _voiceView.delegate = self;
-//    __weak typeof(self) weakSelf = self;
-//    _voiceView.block= ^{
-//        [UIView animateWithDuration:0.5 animations:^{
-//            weakSelf.voiceView.frame = CGRectMake(0, Kheight, Kwidth, Kheight);
-//        }];
-//    };
     [_voiceBackView addSubview:_voiceView];
-    
-    
-    //数字键盘界面
-    _numberView = [[NumberView alloc] initWithFrame:CGRectMake(0, Kheight, Kwidth, Kheight)];
-    __weak typeof(self) weakSelf1 = self;
-    _numberView.block= ^{
-        [UIView animateWithDuration:0.5 animations:^{
-            weakSelf1.numberView.frame = CGRectMake(0, Kheight, Kwidth, Kheight);
-        }];
-    };
-    [self.view addSubview:_numberView];
     
     //首页导航页面
     navigationView = [[NavigationView alloc] initWithFrame:CGRectMake(0, 40, Kwidth, Kheight)];
@@ -115,21 +98,36 @@
     searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, Kwidth, Kheight)];
     searchView.hidden = YES;
     [self.view addSubview:searchView];
+    
+    //数字键盘界面,默认隐藏
+    _numberView = [[NumberView alloc] initWithFrame:CGRectMake(0, Kheight, Kwidth, Kheight)];
+    __weak typeof(self) weakSelf1 = self;
+    _numberView.block= ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            weakSelf1.numberView.frame = CGRectMake(0, Kheight, Kwidth, Kheight);
+        }];
+    };
+    [self.view addSubview:_numberView];
 
 }
 
 
 - (void)setupData {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+
     NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
     NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
     if (!pulseDBName) {
-        [[InfraredData sharedInfraredData] parserJSON];
+        [[InfraredData sharedInfraredData] parserJSON:data];
         NSString *dbName = [InfraredData sharedInfraredData].dbName;
         [userDefaultes setObject:dbName forKey:@"pulseDBName"];
     }else{
         [InfraredData sharedInfraredData].dbName = pulseDBName;
     }
     
+    //弹起数字键盘
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openNumberView) name:@"openNumberView" object:nil];
     [self creatProgramData];
 
     
@@ -144,7 +142,7 @@
     [UIView animateWithDuration:0.1 animations:^{
         _voiceBackView.frame = CGRectMake(0, 421, Kwidth, _voiceBackView.frame.size.height);
     }];
-    //[_voiceView start];
+    [_voiceView start];
 }
 
 - (IBAction)volumeAction:(id)sender {

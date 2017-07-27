@@ -21,6 +21,7 @@
 		3211B9CA1F297AA60086D237 /* program.json in Resources */ = {isa = PBXBuildFile; fileRef = 3211B9C91F297AA60086D237 /* program.json */; };
 		3211B9CC1F297AB10086D237 /* compnay.json in Resources */ = {isa = PBXBuildFile; fileRef = 3211B9CB1F297AB10086D237 /* compnay.json */; };
 		3211B9CE1F297AD40086D237 /* channel.json in Resources */ = {isa = PBXBuildFile; fileRef = 3211B9CD1F297AD40086D237 /* channel.json */; };
+		3211B9D11F29C21C0086D237 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211B9D01F29C21C0086D237 /* NSString+Extension.m */; };
 		322D57E61F06481A001A5615 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57E51F06481A001A5615 /* main.m */; };
 		322D57E91F06481A001A5615 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57E81F06481A001A5615 /* AppDelegate.m */; };
 		322D57EC1F06481A001A5615 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D57EB1F06481A001A5615 /* ViewController.m */; };
@@ -153,6 +154,8 @@
 		3211B9C91F297AA60086D237 /* program.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = program.json; sourceTree = "<group>"; };
 		3211B9CB1F297AB10086D237 /* compnay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = compnay.json; sourceTree = "<group>"; };
 		3211B9CD1F297AD40086D237 /* channel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = channel.json; sourceTree = "<group>"; };
+		3211B9CF1F29C21C0086D237 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		3211B9D01F29C21C0086D237 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		322D57E11F06481A001A5615 /* RemoteControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		322D57E51F06481A001A5615 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322D57E71F06481A001A5615 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -423,6 +426,8 @@
 				3211B9CB1F297AB10086D237 /* compnay.json */,
 				3211B9C91F297AA60086D237 /* program.json */,
 				320BEA7A1F25A0160031EE0D /* test.json */,
+				3211B9CF1F29C21C0086D237 /* NSString+Extension.h */,
+				3211B9D01F29C21C0086D237 /* NSString+Extension.m */,
 				32766F9F1F21CA0F00617377 /* sendInfrared */,
 				32B5EBB01F219EEC00B8D5E2 /* libOlamiRecognizer.a */,
 				32B5EBB11F219EEC00B8D5E2 /* OlamiRecognizer.h */,
@@ -812,6 +817,7 @@
 				32F6EB9B1F0A377200906BDD /* FMDatabaseQueue.m in Sources */,
 				32F6EBA31F0A384200906BDD /* FMDBHelp.m in Sources */,
 				32C999331F136026005E6946 /* MASViewAttribute.m in Sources */,
+				3211B9D11F29C21C0086D237 /* NSString+Extension.m in Sources */,
 				32AFC7201F1F5D340032C1DB /* SelectOperatorVC.m in Sources */,
 				32F966BB1F27124D00F6186A /* ContentViewCollectionViewCell.m in Sources */,
 				3211B9C51F2978A10086D237 /* AFSecurityPolicy.m in Sources */,
