@@ -113,21 +113,23 @@
 
 
 - (void)setupData {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-
-    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
-    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
-    if (!pulseDBName) {
-        [[InfraredData sharedInfraredData] parserJSON:data];
-        NSString *dbName = [InfraredData sharedInfraredData].dbName;
-        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
-    }else{
-        [InfraredData sharedInfraredData].dbName = pulseDBName;
-    }
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
+//    NSData *data = [NSData dataWithContentsOfFile:filePath];
+//
+//    NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
+//    NSString *pulseDBName = [userDefaultes objectForKey:@"pulseDBName"];
+//    if (!pulseDBName) {
+//        [[InfraredData sharedInfraredData] parserJSON:data];
+//        NSString *dbName = [InfraredData sharedInfraredData].dbName;
+//        [userDefaultes setObject:dbName forKey:@"pulseDBName"];
+//    }else{
+//        [InfraredData sharedInfraredData].dbName = pulseDBName;
+//    }
     
     //弹起数字键盘
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openNumberView) name:@"openNumberView" object:nil];
+    
+    //创建频道列表
     [self creatProgramData];
 
     

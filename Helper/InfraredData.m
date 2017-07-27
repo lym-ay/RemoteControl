@@ -36,8 +36,7 @@
 
 
 - (void)createTable {
-    [[FMDBHelp sharedFMDBHelp] createDBWithName:@"pulseDBName"];
-    NSString *createTableSql =
+     NSString *createTableSql =
     [NSString stringWithFormat:@"create table if not exists %@('pulseID' text primary key not null,'chineseName' text,'userCode' text,'deviceName' text,'pulseData' text,'datacodeValue' text)",TABLENAME];
     
     BOOL isCreate =  [[FMDBHelp sharedFMDBHelp] notResultSetWithSql:createTableSql];
@@ -99,7 +98,7 @@
     NSString *searchSql = [NSString stringWithFormat:@"select usercode,datacodevalue from pulseTable where pulseID = '%@'",index];
     NSArray *arry = [[FMDBHelp sharedFMDBHelp] qureyWithSql:searchSql];
     NSDictionary *dic = arry[0];
-    NSLog(@"result is %@",dic);
+    //NSLog(@"result is %@",dic);
     return dic;
 }
 @end
