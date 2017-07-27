@@ -171,6 +171,7 @@
         || [str isEqualToString:@"needmore_ask"]) {//查看那个频道
         NSString *channelName = _slotValue[0];
         if (channelName) {
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"voiceValue" object:channelName userInfo:nil]];
             NSString *str = [[UserManager shareInstance].programData objectForKey:channelName];
             int num = [str intValue];
              [self sendNum:num];

@@ -32,6 +32,6 @@ NSString *str = [dateFormatter stringFromDate:[NSDate date]];\
 fprintf(stderr,"%s %s:%d %s\n",[str UTF8String], [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);\
 }
 
-
+#define DBName @"RemoteControlDB"
 
 #endif /* Macro_h */

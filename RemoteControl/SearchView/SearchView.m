@@ -45,7 +45,7 @@
 
 
 - (void)setupData {
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(voiceValue:) name:@"voiceValue" object:nil];
 }
 
 
@@ -154,6 +154,23 @@
     
     return NO;
     
+}
+
+//接受语音发过来的文字
+- (void)voiceValue:(NSNotification*)notice {
+    NSString *val = notice.object;
+    
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_searchField resignFirstResponder];//收起键盘
+        _searchField.text = val;
+        [UIView animateWithDuration:0.2 animations:^{
+            self.hidden = NO;
+            _programSearchView.hidden = NO;
+        }];
+    });
+
 }
 
 

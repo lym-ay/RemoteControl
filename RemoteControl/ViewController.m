@@ -126,6 +126,12 @@
 //        [InfraredData sharedInfraredData].dbName = pulseDBName;
 //    }
     
+    [InfraredData sharedInfraredData].dbName = DBName;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    [[InfraredData sharedInfraredData] parserJSON:data];
+
+    
     //弹起数字键盘
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openNumberView) name:@"openNumberView" object:nil];
     

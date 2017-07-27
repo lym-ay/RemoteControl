@@ -15,7 +15,7 @@
 #import "UserManager.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define DBName @"RemoteControlDB"
+
 
 static NSString   *OperationCell              =  @"OperationViewTableViewCellId";
 
