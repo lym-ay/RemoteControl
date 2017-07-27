@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//电视节目播出时间表
 @interface ScheduleCollectionViewCell : UICollectionViewCell
 
 @end

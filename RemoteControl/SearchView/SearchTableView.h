@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//用来显示搜索的记录
 @protocol SearchTableViewDelegate <NSObject>
 
 -(void)searchData:(NSString*) name;

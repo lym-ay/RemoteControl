@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UIImage *img = [UIImage imageNamed:@"cq"];
+    [_imgView setImage:img];
 }
 
 @end

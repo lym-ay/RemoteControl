@@ -85,7 +85,7 @@
  
     
     //录音界面
-    _voiceView = [[VoiceView alloc] initWithFrame:_voiceBackView.frame];
+    _voiceView = [[VoiceView alloc] initWithFrame:CGRectMake(0, 0, Kwidth, 247)];
     _voiceBackView.backgroundColor = COLOR(24, 49, 69, 1);
     _voiceView.delegate = self;
 //    __weak typeof(self) weakSelf = self;
@@ -113,6 +113,7 @@
     
     //搜索页面，默认隐藏
     searchView = [[SearchView alloc] initWithFrame:CGRectMake(0, 64, Kwidth, Kheight)];
+    searchView.hidden = YES;
     [self.view addSubview:searchView];
 
 }
@@ -143,7 +144,7 @@
     [UIView animateWithDuration:0.1 animations:^{
         _voiceBackView.frame = CGRectMake(0, 421, Kwidth, _voiceBackView.frame.size.height);
     }];
-    [_voiceView start];
+    //[_voiceView start];
 }
 
 - (IBAction)volumeAction:(id)sender {
@@ -201,7 +202,7 @@
 
 //创建频道列表
 - (void)creatProgramData {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"program" ofType:@"json"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"channel" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSError *err;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data

@@ -133,10 +133,7 @@
             
             
             cell.block = ^(NSString *str){
-                //                SearchViewController *search = [SearchViewController new];
-                //                search.title = self.HotDataArr[index];
-                //                [self.navigationController pushViewController:search animated:YES];
-                [self.delegate searchData:str];
+                 [self.delegate searchData:str];
             };
         }
         //        cell.DBlock =^{

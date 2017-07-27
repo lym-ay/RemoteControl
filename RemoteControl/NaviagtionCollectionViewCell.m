@@ -90,7 +90,7 @@ static NSString *smallID = @"SmallCommonCell";
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(15, 15, 10, 15);//分别为上、左、下、右
+    return UIEdgeInsetsMake(15, 15, 15, 15);//分别为上、左、下、右
 }
 
 @end

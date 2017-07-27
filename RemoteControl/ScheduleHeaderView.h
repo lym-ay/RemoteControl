@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleHeaderView : UITableViewHeaderFooterView
+//UITableView的头部，用来显示星期几
 
+typedef void(^buttonBlock)(void);
+
+@interface ScheduleHeaderView : UITableViewHeaderFooterView
+@property (nonatomic, copy) buttonBlock block;
 @end

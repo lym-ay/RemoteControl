@@ -1,0 +1,19 @@
+{
+    "province": "上海",
+    "version": "1.0",
+    "support": [
+        {
+            "company": "东方有线",
+            "product_model": "龙晶一体机"
+        },
+        {
+            "company": "IPTV",
+            "product_model": "IPTV一体机"
+        },
+        {
+            "company": "东方有线",
+            "product_model": "龙晶一体机"
+        }
+
+    ]
+}

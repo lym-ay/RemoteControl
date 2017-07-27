@@ -58,6 +58,8 @@
     }
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.backgroundColor = COLOR(117, 197, 239, 1);
+    
+    [self block];
 }
 
 @end
