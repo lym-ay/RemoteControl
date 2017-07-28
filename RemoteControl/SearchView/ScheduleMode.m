@@ -33,19 +33,24 @@
 
 -(void)initWithData:(NSDictionary *)dic{
     _dataArrys = [[NSMutableArray alloc] init];
+    _dataIsPlayingArry = [[NSMutableArray alloc] init];
     _dicData = dic;
     [self setDatas];
 }
 
 -(void)setDatas{
     NSArray *arry = [_dicData objectForKey:@"data_obj"];
-    
     for (int i=0; i<arry.count; i++) {
         ProgramData *data = [[ProgramData alloc] init];
         NSDictionary    *dataDic = [arry objectAtIndex:i];
         [self propertyKeys:data];
         [self reflectDataFromOtherObject:data dicData:dataDic];
         [_dataArrys addObject:data];
+    }
+    
+    for (int i=0; i<2; i++) {
+        ProgramData *data = _dataArrys[i];
+        [_dataIsPlayingArry addObject:data];
     }
 }
 

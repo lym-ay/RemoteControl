@@ -10,6 +10,7 @@
 #import "ScheduleHeaderView.h"
 #import "ScheduleTableViewCell.h"
 #import "Macro.h"
+#import "ScheduleMode.h"
 
 
 #define KHeaderId @"HotHeaderHeader"
@@ -80,7 +81,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.backgroundColor = COLOR(117, 197, 239, 1);
     
-    
+    [_tableView reloadData];
 }
 
 
@@ -94,14 +95,17 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
      ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ScheduleCell];
-    
-    return cell;
+     
+     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 49;
 }
 
+- (void)reloadDatas {
+    [_tableView reloadData];
+}
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    ScheduleHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:KHeaderId];
@@ -115,6 +119,7 @@
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //    return 60;
 //}
+
 
 
 @end

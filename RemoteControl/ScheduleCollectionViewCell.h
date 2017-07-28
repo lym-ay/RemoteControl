@@ -10,5 +10,5 @@
 
 //电视节目播出时间表
 @interface ScheduleCollectionViewCell : UICollectionViewCell
-
+- (void)reloadDatas;
 @end

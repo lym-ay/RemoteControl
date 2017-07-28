@@ -10,6 +10,7 @@
 #import "ContentViewCollectionViewCell.h"
 #import "SmallCollectionViewCell.h"
 #import "Macro.h"
+#import "ScheduleMode.h"
 
 
 static NSString *commonID = @"CommonCell";
@@ -57,11 +58,31 @@ static NSString *smallID = @"SmallCommonCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         ContentViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:commonID forIndexPath:indexPath];
+        NSMutableArray *arry = [ScheduleMode shareInstance].dataIsPlayingArry;
+        if (arry) {
+            ProgramData *data = arry[indexPath.row];
+            if (data) {
+                cell.programName.text = data.program_title;
+                cell.channelName.text = data.channel_title;
+            }
+            
+        }
+        
         return cell;
         
     }
     
     SmallCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:smallID forIndexPath:indexPath];
+    NSMutableArray *arry = [ScheduleMode shareInstance].dataIsPlayingArry;
+    if (arry) {
+        ProgramData *data = arry[indexPath.row];
+        if (data) {
+            cell.programName.text = data.program_title;
+            cell.channelName.text = data.channel_title;
+        }
+
+    }
+    
     return cell;
 }
 
@@ -69,12 +90,9 @@ static NSString *smallID = @"SmallCommonCell";
 
 //item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 11;
+    return  [ScheduleMode shareInstance].dataIsPlayingArry.count;
     
 }
-
-
-
 
 //定义每个UICollectionViewCell 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,9 +104,12 @@ static NSString *smallID = @"SmallCommonCell";
     
 }
 //定义每个Section 的 margin
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(15, 15, 10, 15);//分别为上、左、下、右
 }
 
+
+- (void)reloadDatas {
+    [_collectionView reloadData];
+}
 @end

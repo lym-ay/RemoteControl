@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProgramCollectionViewCell : UICollectionViewCell
-
+- (void)reloadDatas;
 @end

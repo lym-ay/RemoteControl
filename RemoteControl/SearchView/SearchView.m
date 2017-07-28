@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 #import "ScheduleMode.h"
 
+
 @interface SearchView()<UITextFieldDelegate,SearchTableViewDelegate>{
     MBProgressHUD *hub;
 }
@@ -141,6 +142,7 @@
     _programSearchView.hidden = NO;
     self.showBlock();
     [self parserJsonFile];
+     
 }
 
 #pragma mark--UITextFieldDelegate
@@ -162,10 +164,8 @@
 - (void)voiceValue:(NSNotification*)notice {
     NSString *val = notice.object;
     
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_searchField resignFirstResponder];//收起键盘
+       [_searchField resignFirstResponder];//收起键盘
         _searchField.text = val;
         [UIView animateWithDuration:0.2 animations:^{
             self.hidden = NO;
@@ -189,9 +189,10 @@
         return;
     }
     
-   
+    
     [[ScheduleMode shareInstance] initWithData:dic];
-
+    
+    [_programSearchView reloadDatas];
 }
 
 

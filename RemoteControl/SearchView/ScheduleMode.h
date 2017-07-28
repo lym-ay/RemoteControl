@@ -29,5 +29,6 @@
 -(void)initWithData:(NSDictionary *)dic;
 - (NSArray*)propertyKeys:(ProgramData*)data;
 - (void)reflectDataFromOtherObject:(ProgramData*)data dicData:(NSDictionary*)dic;
-@property (nonatomic,strong) NSMutableArray         *dataArrys;//保存所有的data值
+@property (nonatomic, strong) NSMutableArray         *dataArrys;//保存所有的data值
+@property (nonatomic, copy) NSMutableArray         *dataIsPlayingArry;//保存正在播放的节目
 @end

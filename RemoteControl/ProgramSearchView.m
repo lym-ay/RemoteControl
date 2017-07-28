@@ -13,7 +13,10 @@
 #import "Macro.h"
 
 
-@interface ProgramSearchView()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+@interface ProgramSearchView()<UICollectionViewDelegate,UICollectionViewDataSource>{
+//    ProgramCollectionViewCell * cell;
+}
 @property (nonatomic ,retain) UICollectionView *collectionView;
 @property (nonatomic ,retain) NSMutableArray *tagArray;
 @property (nonatomic ,retain) RCHeaderChooseViewScrollView  *headerView;
@@ -50,8 +53,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
     [self.headerView setUpTitleArray:array titleColor:COLOR(51, 51, 51, 1) titleSelectedColor:COLOR(42, 161, 222, 1) titleFontSize:16];
     __weak typeof(self) weakSelf = self;
     self.headerView.btnChooseClickReturn = ^(NSInteger x) {
-        NSLog(@"点击了第%ld个按钮",x+1);
-        [weakSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:x inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+       [weakSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:x inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     };
     
     
@@ -83,6 +85,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
     switch (indexPath.row) {
         case 0: {
             ProgramCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:programID forIndexPath:indexPath];
+            [cell reloadDatas];
           
             return cell;
         }
@@ -90,7 +93,7 @@ static NSString *sectionHeaderID = @"sectionHeader";
             break;
         case 1: {
             ScheduleCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:scheduleID forIndexPath:indexPath];
-             
+            [cell reloadDatas];
             return cell;
         }
             break;
@@ -110,4 +113,9 @@ static NSString *sectionHeaderID = @"sectionHeader";
     [self.headerView scollToCurrentButtonWithIndex:index];
     
 }
+
+- (void)reloadDatas {
+    [_collectionView reloadData];
+}
+
 @end

@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProgramSearchView : UIView
+- (void)reloadDatas;
 @end
